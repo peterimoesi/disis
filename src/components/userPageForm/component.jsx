@@ -23,7 +23,8 @@ const userDetailsForm = ({
     selectDegree,
     addNewSkill,
     onSkillChange,
-    onPreview
+    onPreview,
+    socailOnChange
 }) => (
     <div>
         { currentPage === 0 &&
@@ -295,44 +296,105 @@ const userDetailsForm = ({
         }
         {/********************************************************** Skills ***** *************************************/}
         { currentPage === 3 &&
-            <div>
-                <div className="row">
-                    <div className="col-lg-12">
-                        <Headers
-                            type="h4"
-                            klass=""
-                        >
-                        Skills
-                        </Headers>
+            <div className="row">
+                <div className="col-lg-6">
+                    <div className="row">
+                        <div className="col-lg-12">
+                            <Headers
+                                type="h4"
+                                klass=""
+                            >
+                            Skills
+                            </Headers>
+                        </div>
+                    </div>
+                    <div className="row">
+                        {
+                            userDetails.skills.map((skill, i) => (
+                                <div className="col-lg-12"  key={i}>
+                                    <Input
+                                        label="Skill"
+                                        name="skill"
+                                        onChange={e => onSkillChange(i, e.target.value)}
+                                        value={userDetails.skills[i]}
+                                        type="text"
+                                    />
+                                </div>
+                            ))
+                        }
+                    </div>
+                    <div className="row">
+                        <div className="col-lg-8 add-new-form">
+                            <Button
+                                outline
+                                color="default"
+                                onClick={addNewSkill}
+                            >
+                                Add new skill +
+                            </Button>
+                        </div>
                     </div>
                 </div>
-                <div className="row">
-                    {
-                        userDetails.skills.map((skill, i) => (
-                            <div className="col-lg-4"  key={i}>
-                                <Input
-                                    label="Skill"
-                                    name="skill"
-                                    onChange={e => onSkillChange(i, e.target.value)}
-                                    value={userDetails.skills[i]}
-                                    type="text"
-                                />
-                            </div>
-                        ))
-                    }
-                </div>
-                <div className="row">
-                    <div className="col-lg-8 add-new-form">
-                        <Button
-                            outline
-                            color="default"
-                            onClick={addNewSkill}
-                        >
-                            Add new skill +
-                        </Button>
-                    </div>
+                <div className="col-lg-6">
+                    <Input
+                        label="Interests"
+                        name="interest"
+                        onChange={onChange}
+                        value={userDetails.interest}
+                        type="textarea"
+                        rows="6"
+                    />
                 </div>
             </div>
+        }
+        {/********************************************************** Skills ***** *************************************/}
+        { currentPage === 4 &&
+                <div>
+                    <div className="row">
+                        <div className="col-lg-12">
+                            <Headers
+                                type="h4"
+                                klass=""
+                            >
+                            Social
+                            </Headers>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-lg-6">
+                            <Input
+                                label="LinkedIn"
+                                icon="linkedin"
+                                name="linkedin"
+                                onChange={socailOnChange}
+                            />
+                        </div>
+                        <div className="col-lg-6">
+                            <Input
+                                label="Facebook"
+                                icon="facebook"
+                                name="facebook"
+                                onChange={socailOnChange}
+                            />
+                        </div>
+                        <div className="col-lg-6">
+                            <Input
+                                label="Twitter"
+                                icon="twitter"
+                                name="twitter"
+                                onChange={socailOnChange}
+                            />
+                        </div>
+                        <div className="col-lg-6">
+                            <Input
+                                label="Instagram"
+                                icon="instagram"
+                                name="instagram"
+                                onChange={socailOnChange}
+                            />
+                        </div>
+                    </div>
+                </div>
         }
         <div className="row buttons-row">
             <div className="col-lg-4 buttons-cont">
@@ -349,8 +411,8 @@ const userDetailsForm = ({
                 <Button
                     outline
                     color="primary"
-                    onClick={currentPage < 3 ? nextPage : null}
-                    disabled={currentPage >= 3}
+                    onClick={currentPage < 4 ? nextPage : null}
+                    disabled={currentPage >= 4}
                 >
                     Next
                 </Button>
@@ -375,7 +437,8 @@ userDetailsForm.propTypes = {
     selectDegree : PropTypes.func.isRequired,
     addNewSkill : PropTypes.func.isRequired,
     onSkillChange : PropTypes.func.isRequired,
-    onPreview : PropTypes.func.isRequired
+    onPreview : PropTypes.func.isRequired,
+    socailOnChange : PropTypes.func.isRequired
 };
 
 export default userDetailsForm;

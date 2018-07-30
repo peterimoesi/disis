@@ -20,7 +20,14 @@ class UserForm extends React.Component {
                 linkedInhref : '',
                 experience : [],
                 education : [],
-                skills : []
+                interest : '',
+                skills : [],
+                social : {
+                    linkedin : '',
+                    facebook : '',
+                    twitter : '',
+                    instagram : ''
+                }
             },
             currentPage : 0
         };
@@ -35,6 +42,7 @@ class UserForm extends React.Component {
         this.addNewSkill = this.addNewSkill.bind(this);
         this.onSkillChange = this.onSkillChange.bind(this);
         this.onPreview = this.onPreview.bind(this);
+        this.socailOnChange = this.socailOnChange.bind(this);
     }
 
     onChange(e) {
@@ -116,6 +124,12 @@ class UserForm extends React.Component {
         this.props.history.push('/preview/local');
     }
 
+    socailOnChange(e) {
+        const { userDetails } = this.state;
+        userDetails.social[e.target.name] = e.target.value;
+        this.setState({ userDetails });
+    }
+
 
     render() {
         console.log(this.state.currentPage);
@@ -138,6 +152,7 @@ class UserForm extends React.Component {
                     selectDegree={this.selectDegree}
                     onSkillChange={this.onSkillChange}
                     onPreview={this.onPreview}
+                    socailOnChange={this.socailOnChange}
                 />
             </div>
         );

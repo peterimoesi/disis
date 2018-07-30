@@ -2,7 +2,8 @@ const initialData = {
     data : {
         experience : [],
         education : [],
-        skills : []
+        skills : [],
+        social : []
     }
 };
 
