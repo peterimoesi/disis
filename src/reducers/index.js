@@ -1,6 +1,9 @@
 import { combineReducers } from 'redux';
 
+import previewData from '../components/userPageForm/reducer';
+
 const appReducer = combineReducers({
+    previewData
 });
 
 const rootReducer = (state, action) => {

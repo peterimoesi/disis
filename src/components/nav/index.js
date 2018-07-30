@@ -9,6 +9,8 @@ import {
     // NavLinkContainer
 } from 'mdbreact';
 
+import './styles.scss';
+
 class NavbarComponent extends React.Component {
     constructor() {
         super();
@@ -16,10 +18,10 @@ class NavbarComponent extends React.Component {
     }
     render() {
         return (
-            <Navbar color="transparent" dark expand="md" fixed="top" scrolling>
+            <Navbar color="transparent" dark expand="md" fixed="top" className="top-nav-bar" scrolling>
                 <div className="container">
                     <NavbarBrand href="#">
-                        <strong>Navbar</strong>
+                        DISIS
                     </NavbarBrand>
                     <NavbarNav right>
                     </NavbarNav>

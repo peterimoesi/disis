@@ -5,7 +5,6 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { connectRouter, routerMiddleware, ConnectedRouter } from 'connected-react-router';
-import './index.css';
 import reducers from './reducers';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';

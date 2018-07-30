@@ -1,0 +1,18 @@
+.user-form-container {
+    padding-top : 30px;
+    .buttons-cont {
+        text-align: center;
+        button {
+            width : 80%;
+        }
+    }
+    .buttons-row, .add-new-form {
+        margin-top: 30px;
+    }
+    .datepicker-wrapper > div > div > div {
+        bottom: auto !important;
+        color : rgba(117, 117, 117, 0.9098039215686274) !important;
+        font-size: 1rem !important;
+        font-weight: 400 !important;
+    }
+}

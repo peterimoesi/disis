@@ -1,17 +1,33 @@
 .background-video {
-    position: absolute;
+    position: relative;
     height : 100vh;
     max-height: 700px;
     width: 100%;
-    video { 
+    overflow: hidden;
+    video {
+        position: absolute;
+        top : 0;
         object-fit: fill;
+        min-width: 1000px;
+        min-height: 600px;
     }
     .bg-vid-overlay {
+        padding-top: 100px;
         height: 100%;
         position: absolute;
         top : 0;
         width: 100%;
-        background: rgba(0, 0, 0, 0.5098039215686274);
-        z-index: 1;
+        background: rgba(0, 0, 0, 0.55);
+    }
+}
+.home-landing {
+    .button-no-border {
+        border : 0;
+        &:hover,
+        &:visited,
+        &:active,
+        &:focus {
+            outline: none;
+        }
     }
 }

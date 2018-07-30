@@ -1,0 +1,11 @@
+.mb-5, .my-5 {
+  margin-bottom: 3rem !important; }
+
+.txt-center {
+  text-align: center; }
+
+label {
+  font-weight: 300 !important; }
+
+html {
+  font-size: 14px; }
