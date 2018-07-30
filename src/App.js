@@ -1,21 +1,16 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './app.scss';
+import React from 'react';
+import 'mdbreact/dist/css/mdb.css';
+import './vendor/bootstrap/css/bootstrap.min.css';
+import routes from './routes/routes';
 
-class App extends Component {
-    render() {
-        return (
-            <div className="App">
-                <header className="app-header">
-                    <img src={logo} className="App-logo" alt="logo" />
-                    <h1 className="App-title">Welcome to React</h1>
-                </header>
-                <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-                </p>
-            </div>
-        );
-    }
-}
+const App = () => (
+    <div>
+        {routes}
+    </div>
+);
+
+// App.propTypes = {
+//     history       : PropTypes.object.isRequired,
+// };
 
 export default App;

@@ -1,0 +1,17 @@
+.background-video {
+    position: absolute;
+    height : 100vh;
+    max-height: 700px;
+    width: 100%;
+    video { 
+        object-fit: fill;
+    }
+    .bg-vid-overlay {
+        height: 100%;
+        position: absolute;
+        top : 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.5098039215686274);
+        z-index: 1;
+    }
+}
