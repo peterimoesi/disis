@@ -23,7 +23,7 @@ class DefaultTheme extends React.Component {
         });
     }
 
-    componentWillUnMount() {
+    componentWillUnmount() {
         document.querySelector('body').removeAttribute('id');
     }
 
