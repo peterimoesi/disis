@@ -3,26 +3,37 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import DefaultTheme from './resume-default';
+import defaultImg from '../../public/imgs/default.jpg';
+import ColorPicker from '../../components/colorPicker';
 
 class ThemesContainer extends React.Component {
     render() {
-        console.log(this.props);
+        let theme;
         switch (this.props.themeType) {
         case 'premium':
-            return (
-                <div />
-            );
+            theme = <div />;
+            break;
         default:
-            return (
-                <DefaultTheme {...this.props} />
-            );
+            theme = 
+            <DefaultTheme
+                {...this.props}
+                defaultImg={defaultImg}
+            />;
+            break;
         }
+        return (
+            <div>
+                {theme}
+                <ColorPicker />
+            </div>
+        );
     }
 }
 
-function mapStateToProps({ previewData }) {
+function mapStateToProps({ previewData, themeColors }) {
     return {
-        userData : previewData.data
+        userData : previewData.data,
+        themeColors
     };
 }
 

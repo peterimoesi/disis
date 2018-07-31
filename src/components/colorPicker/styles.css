@@ -1,0 +1,37 @@
+.theme-selector {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center; }
+  .theme-selector .color-picker-cont {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%; }
+    .theme-selector .color-picker-cont .color-preview {
+      height: 60px;
+      width: 60px;
+      border: 3px solid #ededed;
+      border-radius: 50%;
+      margin: 10px;
+      outline: none; }
+  .theme-selector .chrome-picker-cont {
+    transition-duration: 400ms;
+    transition-timing-function: ease-in-out;
+    visibility: hidden;
+    opacity: 0; }
+    .theme-selector .chrome-picker-cont.chrome-picker-show {
+      visibility: visible;
+      opacity: 1; }
+    .theme-selector .chrome-picker-cont .chrome-picker-padding {
+      padding: 20px;
+      position: relative; }
+      .theme-selector .chrome-picker-cont .chrome-picker-padding .close-picker {
+        position: absolute;
+        right: 5px;
+        top: 5px; }
