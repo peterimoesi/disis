@@ -15,6 +15,7 @@ class DefaultTheme extends React.Component {
     }
 
     componentDidMount() {
+        console.log('peter');
         document.querySelector('body').setAttribute('id', 'page-top');
         this.props.addColors({
             primary : '#BD5D38',
