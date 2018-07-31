@@ -14,7 +14,7 @@ module.exports = {
             "experimentalObjectRestSpread": true
         },
         "sourceType": "module",
-        "ecmaVersion": 6
+        "ecmaVersion": 8
     },
     "plugins": [
         "react"

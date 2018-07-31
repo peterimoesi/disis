@@ -45,6 +45,12 @@ class UserForm extends React.Component {
         this.socailOnChange = this.socailOnChange.bind(this);
     }
 
+    componentDidMount() {
+        if (this.props.isAuthenticated) {
+            this.setState({ userDetails : this.props.userData });
+        }
+    }
+
     onChange(e) {
         const { userDetails } = this.state;
         userDetails[e.target.name] = e.target.value;
@@ -121,7 +127,7 @@ class UserForm extends React.Component {
 
     onPreview() {
         this.props.onPreview(this.state.userDetails);
-        this.props.history.push('/preview/local');
+        this.props.history.push('/app/preview/demo');
     }
 
     socailOnChange(e) {
@@ -139,6 +145,7 @@ class UserForm extends React.Component {
                     <h2 className="title mb-5 txt-center">Please fill in the information</h2>
                 </div>
                 <UserFormComponent
+                    {...this.props}
                     userDetails={this.state.userDetails}
                     onChange={this.onChange}
                     nextPage={this.nextPage}
@@ -161,7 +168,20 @@ class UserForm extends React.Component {
 
 UserForm.propTypes = {
     onPreview : PropTypes.func.isRequired,
-    history : PropTypes.object.isRequired
+    history : PropTypes.object.isRequired,
+    isAuthenticated : PropTypes.bool.isRequired,
+    userData : PropTypes.object,
 };
 
-export default connect(null, { onPreview })(UserForm);
+UserForm.defaultProps = {
+    userData : null
+};
+
+function mapStateToProps({ userAuthentication }) {
+    return {
+        isAuthenticated : userAuthentication.isAuthenticated,
+        userData : userAuthentication.user.user,
+    };
+}
+
+export default connect(mapStateToProps, { onPreview })(UserForm);

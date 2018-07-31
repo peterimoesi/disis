@@ -9,3 +9,21 @@ label {
 
 html {
   font-size: 14px; }
+
+.custom-scrollbar {
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */ }
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 7px; }
+  .custom-scrollbar.hide-scroll::-webkit-scrollbar {
+    width: 3px; }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 0px; }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #ededed;
+    border-radius: 0px; }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #ededed; }

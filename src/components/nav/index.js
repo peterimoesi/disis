@@ -3,9 +3,10 @@ import {
     Navbar,
     NavbarBrand,
     NavbarNav,
+    NavItem,
+    NavLink
     // NavbarToggler,
     // Collapse,
-    // NavItem,
     // NavLinkContainer
 } from 'mdbreact';
 
@@ -18,12 +19,18 @@ class NavbarComponent extends React.Component {
     }
     render() {
         return (
-            <Navbar color="transparent" dark expand="md" fixed="top" className="top-nav-bar" scrolling>
+            <Navbar color="transparent" dark expand="lg" fixed="top" className="top-nav-bar" scrolling>
                 <div className="container">
                     <NavbarBrand href="#">
                         DISIS
                     </NavbarBrand>
                     <NavbarNav right>
+                        <NavItem>
+                            <NavLink to="/app/login">Login</NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink to="/app/signup">Signup</NavLink>
+                        </NavItem>
                     </NavbarNav>
                 </div>
             </Navbar>

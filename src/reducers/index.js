@@ -2,10 +2,12 @@ import { combineReducers } from 'redux';
 
 import previewData from '../components/userPageForm/reducer';
 import themeColors from '../components/colorPicker/reducer';
+import userAuthentication from '../screens/account/reducer';
 
 const appReducer = combineReducers({
     previewData,
-    themeColors
+    themeColors,
+    userAuthentication
 });
 
 const rootReducer = (state, action) => {

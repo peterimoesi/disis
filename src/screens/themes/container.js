@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 import DefaultTheme from './resume-default';
 import defaultImg from '../../public/imgs/default.jpg';
-import ColorPicker from '../../components/colorPicker';
 
 class ThemesContainer extends React.Component {
     render() {
@@ -13,26 +12,28 @@ class ThemesContainer extends React.Component {
         case 'premium':
             theme = <div />;
             break;
-        default:
+        case 'default':
             theme = 
             <DefaultTheme
                 {...this.props}
                 defaultImg={defaultImg}
             />;
             break;
+        default:
+            theme = null;
+            break;
         }
         return (
             <div>
                 {theme}
-                <ColorPicker />
             </div>
         );
     }
 }
 
-function mapStateToProps({ previewData, themeColors }) {
+function mapStateToProps({ previewData, themeColors, userAuthentication }) {
     return {
-        userData : previewData.data,
+        userData : userAuthentication.isAuthenticated ? userAuthentication.user.user : previewData.data,
         themeColors
     };
 }

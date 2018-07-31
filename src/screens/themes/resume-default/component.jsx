@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 
 import './css/resume.scss';
@@ -47,10 +47,10 @@ const resumeDefault = ({ userData, defaultImg, toggleNav, isOpen, themeColors })
 
             <section className="resume-section p-3 p-lg-5 d-flex d-column" id="about">
                 <div className="my-auto">
-                    <h1 className="mb-0">{userData.firstName} <span className="text-primary">{userData.lastName}</span>
+                    <h1 className="mb-0">{userData.firstName} <span style={{ color : themeColors.primary }}>{userData.lastName}</span>
                     </h1>
                     <div className="subheading mb-5">{userData.phoneNumber} <span> </span>
-                        <a href="mailto:name@email.com">{userData.email}</a>
+                        <a href="mailto:name@email.com" style={{ color : themeColors.primary }}>{userData.email}</a>
                     </div>
                     <p className="mb-5">{userData.biography}</p>
                     <ul className="list-inline list-social-icons mb-0">
@@ -58,12 +58,12 @@ const resumeDefault = ({ userData, defaultImg, toggleNav, isOpen, themeColors })
                             Object.keys(userData.social).map((key, i) => (
                                 userData.social[key] ? 
                                     <li className="list-inline-item">
-                                        <Link target="_blank" to={userData.social[key]}>
+                                        <a target="_blank" rel="noopener noreferrer" href={userData.social[key]}>
                                             <span className="fa-stack fa-lg">
                                                 <i className="fa fa-circle fa-stack-2x"></i>
                                                 <i className={`fa fa-${key} fa-stack-1x fa-inverse`}></i>
                                             </span>
-                                        </Link>
+                                        </a>
                                     </li> : null
                             ))
                         }
@@ -83,7 +83,7 @@ const resumeDefault = ({ userData, defaultImg, toggleNav, isOpen, themeColors })
                                     <p>{exp.jobDescription}</p>
                                 </div>
                                 <div className="resume-date text-md-right">
-                                    <span className="text-primary">{parseMonth(exp.startDate)} - {exp.endDate ? parseMonth(exp.startDate) : 'present'}</span>
+                                    <span style={{ color : themeColors.primary }}>{parseMonth(exp.startDate)} - {exp.endDate ? parseMonth(exp.startDate) : 'present'}</span>
                                 </div>
                             </div>
                         ))
@@ -104,7 +104,7 @@ const resumeDefault = ({ userData, defaultImg, toggleNav, isOpen, themeColors })
                                     <div>{edu.program}</div>
                                 </div>
                                 <div className="resume-date text-md-right">
-                                    <span className="text-primary">August 2006 - May 2010</span>
+                                    <span style={{ color : themeColors.primary }}>August 2006 - May 2010</span>
                                 </div>
                             </div>
                         ))

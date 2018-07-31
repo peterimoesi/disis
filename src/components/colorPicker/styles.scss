@@ -7,6 +7,7 @@
     align-items: center;
     flex-direction: column;
     justify-content: center;
+    z-index: 3000;
     .color-picker-cont {
         display: flex;
         flex-direction: row;
@@ -27,9 +28,12 @@
         transition-timing-function: ease-in-out;
         visibility: hidden;
         opacity: 0;
+        height: 0;
+        background: #f9f9f9;
         &.chrome-picker-show {
             visibility: visible;
             opacity: 1;
+            height: auto;
         }
         .chrome-picker-padding {
             padding: 20px;

@@ -4,3 +4,7 @@ export function onPreview(data) {
         data
     };
 }
+
+export function updateUser() {
+    
+}

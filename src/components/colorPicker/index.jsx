@@ -36,7 +36,7 @@ class ColorPicker extends React.Component {
                 <div className={classnames('chrome-picker-cont', { 'chrome-picker-show' : this.state.activeColor })}>
                     <div className="chrome-picker-padding">
                         <i
-                            className="fa fa-close close-picker" ariaHidden
+                            className="fa fa-close close-picker" aria-hidden
                             onClick={() => this.setState({ activeColor : '' })}
                             role="button"
                             tabIndex="0"

@@ -24,7 +24,9 @@ const userDetailsForm = ({
     addNewSkill,
     onSkillChange,
     onPreview,
-    socailOnChange
+    socailOnChange,
+    removePreview,
+    showSave
 }) => (
     <div>
         { currentPage === 0 &&
@@ -367,6 +369,7 @@ const userDetailsForm = ({
                                 icon="linkedin"
                                 name="linkedin"
                                 onChange={socailOnChange}
+                                value={userDetails.social.linkedin}
                             />
                         </div>
                         <div className="col-lg-6">
@@ -375,6 +378,7 @@ const userDetailsForm = ({
                                 icon="facebook"
                                 name="facebook"
                                 onChange={socailOnChange}
+                                value={userDetails.social.facebook}
                             />
                         </div>
                         <div className="col-lg-6">
@@ -383,6 +387,7 @@ const userDetailsForm = ({
                                 icon="twitter"
                                 name="twitter"
                                 onChange={socailOnChange}
+                                value={userDetails.social.twitter}
                             />
                         </div>
                         <div className="col-lg-6">
@@ -391,6 +396,7 @@ const userDetailsForm = ({
                                 icon="instagram"
                                 name="instagram"
                                 onChange={socailOnChange}
+                                value={userDetails.social.instagram}
                             />
                         </div>
                     </div>
@@ -417,9 +423,17 @@ const userDetailsForm = ({
                     Next
                 </Button>
             </div>
-            <div className="col-lg-4 buttons-cont">
-                <Button outline color="success" onClick={onPreview}>Preview</Button>
-            </div>
+            { !removePreview &&
+                <div className="col-lg-4 buttons-cont">
+                    <Button outline color="success" onClick={onPreview}>Preview</Button>
+                </div>
+            }
+            {
+                showSave &&
+                <div className="col-lg-4 buttons-cont">
+                    <Button color="success" onClick={onPreview}>Save</Button>
+                </div>
+            }
         </div>
     </div>
 );
@@ -438,7 +452,14 @@ userDetailsForm.propTypes = {
     addNewSkill : PropTypes.func.isRequired,
     onSkillChange : PropTypes.func.isRequired,
     onPreview : PropTypes.func.isRequired,
-    socailOnChange : PropTypes.func.isRequired
+    socailOnChange : PropTypes.func.isRequired,
+    removePreview : PropTypes.bool,
+    showSave : PropTypes.bool,
+};
+
+userDetailsForm.defaultProps = {
+    removePreview : null,
+    showSave : null,
 };
 
 export default userDetailsForm;

@@ -5,6 +5,8 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { connectRouter, routerMiddleware, ConnectedRouter } from 'connected-react-router';
+import * as Cookies from 'js-cookie';
+
 import reducers from './reducers';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
@@ -20,6 +22,22 @@ const store = createStore(
     connectRouter(history)(reducers),
     composeWithDevTools(applyMiddleware(...middleWare))
 );
+
+const userCredentials = Cookies.get('userCredentials');
+const token = Cookies.get('token');
+
+if (userCredentials && token) {
+    try {
+        store.dispatch({
+            type : 'IS_AUTHENTICATED',
+            user : JSON.parse(userCredentials)
+        });
+        store.dispatch({ type : 'LOGIN' });
+    } catch (e) {
+        console.error(e);
+        // store.dispatch(logout());
+    }
+}
 
 console.log(store);
 

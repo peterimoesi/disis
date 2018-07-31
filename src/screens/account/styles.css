@@ -1,0 +1,10 @@
+.account-form-cont {
+  width: 500px;
+  max-width: 100%;
+  margin: auto;
+  border: 1px solid #ededed;
+  padding: 20px;
+  margin-top: 100px; }
+  .account-form-cont .error-text {
+    margin: 10px 0;
+    color: red; }
