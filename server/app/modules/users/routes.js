@@ -9,6 +9,6 @@ routes.post('/user/register', UserController.userRegister);
 routes.post('/user/login', UserController.userLogin);
 routes.patch('/user/update/:userId', requireJwtAuth, UserController.userUpdate);
 routes.get('/user/:userId', UserController.getUserDetails);
-// routes.patch('/users/profileImage/:userId', requireJwtAuth, UserController.profileImageUpdate);
+routes.patch('/user/profileImage/:userId', requireJwtAuth, UserController.profileImageUpdate);
 
 export default routes;

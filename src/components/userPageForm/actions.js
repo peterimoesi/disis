@@ -10,7 +10,7 @@ export function updateUser(data, id, token) {
             setUserCredentials({ ...res.data, token });
             dispatch({
                 type : 'IS_AUTHENTICATED',
-                user : res.data
+                user : { ...res.data, token}
             });
             return 200;
         })

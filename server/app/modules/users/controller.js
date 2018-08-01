@@ -153,3 +153,39 @@ export const getUserDetails = async (req, res) => {
         return res.status(401).json({ error: true, errorMessage: 'Error finding User' });
     }
 };
+
+export const profileImageUpdate = async (req, res) => {
+    const { imageString } = req.body;
+    const { userId } = req.params;
+    console.log(req.params.data);
+    try {
+        await User.findById(userId, async(err, user) => {
+            user.image = imageString;
+            user.save((err, updatedUser) => {
+                if (err) {
+                    console.log(err);
+                    return res.status(401).json({ error: true, errorMessage: 'Error saving img' });
+                }
+                return res.status(200).json({
+                    success : true,
+                    user    : {
+                        id    : updatedUser._id,
+                        email : updatedUser.email,
+                        fullName : updatedUser.fullName,
+                        description : updatedUser.description,
+                        phoneNumber : updatedUser.phoneNumber,
+                        rating : updatedUser.rating,
+                        services : updatedUser.services,
+                        locations : updatedUser.locations,
+                        image : updatedUser.image
+                    }
+                });
+            });
+        });
+    }
+    catch (e) {
+        console.log(e);
+        return res.status(401).json({ error: true, errorMessage: 'Unauthorised' });
+    }
+};
+

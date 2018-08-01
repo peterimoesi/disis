@@ -54,3 +54,19 @@
     overflow-x: hidden;
     overflow-y: auto;
 }
+.user-page-link {
+    z-index: 1;
+    position: absolute;
+    top: 0px;
+    padding: 10px 0;
+    width: calc(100% - 30px);
+    left: 0;
+    text-align: center;
+    font-size: 15px;
+    color: #f9f9f9;
+    background: rgba(0, 0, 0, 0.5);
+}
+.picture-upload {
+    margin: 30px;
+    margin-bottom: 0;
+}

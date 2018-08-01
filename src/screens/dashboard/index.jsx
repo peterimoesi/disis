@@ -7,6 +7,9 @@ import Userform from '../../components/userPageForm';
 import ColorPicker from '../../components/colorPicker';
 import { removeUserCredentials } from '../../actions/setUserCredentials';
 
+import { uploadImg } from './action';
+import { updateUser } from '../../components/userPageForm/actions';
+
 import './styles.scss';
 
 class Dashboard extends React.Component {
@@ -18,6 +21,8 @@ class Dashboard extends React.Component {
         };
         this.toggle = this.toggle.bind(this);
         this.handleKeyDown = this.handleKeyDown.bind(this);
+        this.handleFileUpload = this.handleFileUpload.bind(this);
+        this.handleThemeSave = this.handleThemeSave.bind(this);
     }
 
     componentDidMount() {
@@ -39,6 +44,22 @@ class Dashboard extends React.Component {
             modal: !this.state.modal,
             modalContent : content
         });
+    }
+
+    handleFileUpload(e) {
+        e.preventDefault();
+        const data = new FormData();
+        data.append('file', e.target.files[0]);
+        data.append('filename', e.target.value);
+        this.props.uploadImg(this.props.userData.id, data, this.props.token);
+    }
+
+    handleThemeSave() {
+        this.props.updateUser({ defaultTheme : {
+            id : 'default',
+            color : this.props.themeColors
+        }
+        }, this.props.userData.id, this.props.token);
     }
 
     render() {
@@ -74,6 +95,9 @@ class Dashboard extends React.Component {
                     this.state.modal ?
                         <div className="modal-container">
                             <div className="modal-child">
+                                <div className="user-page-link">
+                                    {`${window.location.origin}/${this.props.userData.id}`}
+                                </div>
                                 <div className="close-cont">
                                     <i className="modal-close fa fa-close"
                                         role="button"
@@ -82,19 +106,26 @@ class Dashboard extends React.Component {
                                     />
                                 </div>
                                 { this.state.modalContent === 'accountDetails' ?
-                                    <div className="modal-user-info custom-scrollbar">
-                                        <Userform
-                                            {...this.props}
-                                            removePreview
-                                            showSave
-                                        />
+                                    <div>
+                                        {/* <div className="picture-upload">
+                                            <label htmlFor="fileUpload">Choose file to upload</label>
+                                            <input type="file" name="pic" accept="image/*" id="fileUpload" onChange={this.handleFileUpload} />
+                                            <Button color="success" onClick={null}>Save</Button>
+                                        </div> */}
+                                        <div className="modal-user-info custom-scrollbar">
+                                            <Userform
+                                                {...this.props}
+                                                removePreview
+                                                showSave
+                                            />
+                                        </div>
                                     </div> : null
                                 }
                                 { this.state.modalContent === 'editTheme' ?
                                     <div className="modal-user-info custom-scrollbar">
                                         <ColorPicker />
-                                        <div className="buttons-cont txt-center">
-                                            <Button color="success" onClick={null}>Save</Button>
+                                        <div className="buttons-cont txt-center" style={{ marginTop : '10px' }}>
+                                            <Button color="success" onClick={this.handleThemeSave}>Save</Button>
                                         </div>
                                     </div> : null
                                 }
@@ -107,15 +138,21 @@ class Dashboard extends React.Component {
     }
 }
 
-function mapStateToProps({ userAuthentication }) {
+function mapStateToProps({ userAuthentication, themeColors }) {
     return {
-        userData : userAuthentication.user.user
+        userData : userAuthentication.user.user,
+        token : userAuthentication.user.token,
+        themeColors
     };
 }
 
 Dashboard.propTypes = {
     removeUserCredentials : PropTypes.func.isRequired,
-    userData : PropTypes.object.isRequired
+    userData : PropTypes.object.isRequired,
+    updateUser : PropTypes.func.isRequired,
+    uploadImg : PropTypes.func.isRequired,
+    token : PropTypes.string.isRequired,
+    themeColors : PropTypes.object.isRequired
 };
 
-export default connect(mapStateToProps, { removeUserCredentials })(Dashboard);
+export default connect(mapStateToProps, { removeUserCredentials, uploadImg, updateUser })(Dashboard);
