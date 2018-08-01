@@ -1,5 +1,5 @@
 import React from 'react';
-// import { HashLink } from 'react-router-hash-link';
+import { HashLink } from 'react-router-hash-link';
 import { Button } from 'mdbreact';
 
 import Navbar from '../../components/nav';
@@ -27,9 +27,14 @@ class Landing extends React.Component {
                                 <div className="col-lg-6 col-md-6 col-sm-24 col-xs-24">
                                     <h1 className="landing-main txt-center">DISIS ME</h1>
                                     <div className="txt-center">
-                                        <Button color="dark-green">
+                                        <HashLink
+                                            smooth
+                                            to="#user-form"
+                                        >
+                                            <Button color="dark-green">
                                             Click to begin
-                                        </Button>
+                                            </Button>
+                                        </HashLink>
                                     </div>
                                 </div>
                                 <div className="col-lg-6 col-md-6 hiddden-sm hidden-xs">
@@ -61,7 +66,7 @@ class Landing extends React.Component {
                         </ul>
                     </div>
                 </div>
-                <div className="container">
+                <div className="container" id="user-form">
                     <UserForm {...this.props} />
                 </div> 
             </div>
