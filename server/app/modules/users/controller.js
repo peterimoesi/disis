@@ -22,7 +22,6 @@ export const userRegister = async (req, res) => {
                 social : user.social[0] || {},
                 skills : user.skills,
                 defaultTheme : user.defaultTheme[0] || {},
-                image : user.image,
                 phoneNumber : user.phoneNumber,
                 biography : user.biography,
                 interest : user.interest
@@ -36,7 +35,6 @@ export const userRegister = async (req, res) => {
 };
 
 export const userLogin = async (req, res) => {
-    console.log(req.body);
     const { email, password } = req.body;
     try {
         User.findOne({ email: email })
@@ -58,7 +56,6 @@ export const userLogin = async (req, res) => {
                                 social : user.social[0] || {},
                                 skills : user.skills,
                                 defaultTheme : user.defaultTheme[0] || {},
-                                image : user.image,
                                 phoneNumber : user.phoneNumber,
                                 biography : user.biography,
                                 interest : user.interest
@@ -104,7 +101,6 @@ export const userUpdate = async (req, res) => {
                         social : updatedUser.social[0],
                         skills : updatedUser.skills,
                         defaultTheme : updatedUser.defaultTheme[0] || {},
-                        image : updatedUser.image,
                         phoneNumber : updatedUser.phoneNumber,
                         biography : updatedUser.biography,
                         interest : updatedUser.interest
@@ -143,7 +139,7 @@ export const getUserDetails = async (req, res) => {
                         image : user.image,
                         phoneNumber : user.phoneNumber,
                         biography : user.biography,
-                        interest : user.interest
+                        interest : user.interest,
                     }
                 }); 
             });
@@ -157,7 +153,6 @@ export const getUserDetails = async (req, res) => {
 export const profileImageUpdate = async (req, res) => {
     const { imageString } = req.body;
     const { userId } = req.params;
-    console.log(req.params.data);
     try {
         await User.findById(userId, async(err, user) => {
             user.image = imageString;
@@ -168,17 +163,9 @@ export const profileImageUpdate = async (req, res) => {
                 }
                 return res.status(200).json({
                     success : true,
-                    user    : {
-                        id    : updatedUser._id,
-                        email : updatedUser.email,
-                        fullName : updatedUser.fullName,
-                        description : updatedUser.description,
-                        phoneNumber : updatedUser.phoneNumber,
-                        rating : updatedUser.rating,
-                        services : updatedUser.services,
-                        locations : updatedUser.locations,
-                        image : updatedUser.image
-                    }
+                    user : {
+                        image : updatedUser.image,
+                    },
                 });
             });
         });

@@ -1,5 +1,7 @@
 const initialData = {
     data : {
+        firstName : '',
+        lastName : '',
         experience : [],
         education : [],
         skills : [],
@@ -17,6 +19,8 @@ export default (state = initialData, action) => {
     case 'CLEAR_PREVIEW':
         return {
             data : {
+                firstName : '',
+                lastName : '',
                 experience : [],
                 education : [],
                 skills : [],

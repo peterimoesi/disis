@@ -7,7 +7,7 @@ import Userform from '../../components/userPageForm';
 import ColorPicker from '../../components/colorPicker';
 import { removeUserCredentials } from '../../actions/setUserCredentials';
 
-import { uploadImg } from './action';
+import { uploadImg, getUserImage } from './action';
 import { updateUser } from '../../components/userPageForm/actions';
 
 import './styles.scss';
@@ -17,15 +17,21 @@ class Dashboard extends React.Component {
         super();
         this.state = {
             modal: false,
-            modalContent : ''
+            modalContent : '',
+            uploadImage : '',
+            waiting : false,
+            profilePic : ''
         };
         this.toggle = this.toggle.bind(this);
         this.handleKeyDown = this.handleKeyDown.bind(this);
         this.handleFileUpload = this.handleFileUpload.bind(this);
         this.handleThemeSave = this.handleThemeSave.bind(this);
+        this.saveImage = this.saveImage.bind(this);
     }
 
     componentDidMount() {
+        this.props.getUserImage(this.props.userData.id)
+            .then(res => this.setState({ profilePic : res }));
         window.addEventListener('keydown', this.handleKeyDown);
     }
 
@@ -42,16 +48,24 @@ class Dashboard extends React.Component {
     toggle(content) {
         this.setState({
             modal: !this.state.modal,
-            modalContent : content
+            modalContent : content,
+            userImage : ''
         });
     }
 
     handleFileUpload(e) {
         e.preventDefault();
-        const data = new FormData();
-        data.append('file', e.target.files[0]);
-        data.append('filename', e.target.value);
-        this.props.uploadImg(this.props.userData.id, data, this.props.token);
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            this.setState({ uploadImage : e.target.result });
+        };
+        reader.readAsDataURL(e.target.files[0]);
+    }
+
+    saveImage() {
+        this.setState({ waiting : true });
+        this.props.uploadImg(this.props.userData.id, this.state.uploadImage, this.props.token)
+            .then(() => this.setState({ waiting : false }));
     }
 
     handleThemeSave() {
@@ -65,7 +79,11 @@ class Dashboard extends React.Component {
     render() {
         return (
             <div className="dashboard-cont">
-                <Themes userData={this.props.userData} themeType="default" />
+                <Themes
+                    profilePic={this.state.profilePic}
+                    userData={this.props.userData}
+                    themeType="default"
+                />
                 <div className="sidebar">
                     <div className="sidebar-item">Change theme</div>
                     <div
@@ -107,11 +125,16 @@ class Dashboard extends React.Component {
                                 </div>
                                 { this.state.modalContent === 'accountDetails' ?
                                     <div>
-                                        {/* <div className="picture-upload">
+                                        <div className="picture-upload">
                                             <label htmlFor="fileUpload">Choose file to upload</label>
                                             <input type="file" name="pic" accept="image/*" id="fileUpload" onChange={this.handleFileUpload} />
-                                            <Button color="success" onClick={null}>Save</Button>
-                                        </div> */}
+                                            <Button
+                                                color="success"
+                                                disabled={this.state.waiting}
+                                                onClick={!this.state.waiting && this.saveImage}>
+                                                    Save
+                                            </Button>
+                                        </div>
                                         <div className="modal-user-info custom-scrollbar">
                                             <Userform
                                                 {...this.props}
@@ -152,7 +175,8 @@ Dashboard.propTypes = {
     updateUser : PropTypes.func.isRequired,
     uploadImg : PropTypes.func.isRequired,
     token : PropTypes.string.isRequired,
-    themeColors : PropTypes.object.isRequired
+    themeColors : PropTypes.object.isRequired,
+    getUserImage : PropTypes.func.isRequired
 };
 
-export default connect(mapStateToProps, { removeUserCredentials, uploadImg, updateUser })(Dashboard);
+export default connect(mapStateToProps, { removeUserCredentials, uploadImg, updateUser, getUserImage })(Dashboard);

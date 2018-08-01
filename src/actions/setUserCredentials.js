@@ -9,6 +9,7 @@ export function setUserCredentials (data) {
         path    : '/',
         expires : d
     });
+    console.log(userCredentials);
     Cookies.set('userCredentials', userCredentials, {
         path    : '/',
         expires : d

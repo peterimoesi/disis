@@ -19,14 +19,15 @@ const resumeDefault = ({
     defaultImg,
     toggleNav,
     isOpen,
-    themeColors
+    themeColors,
+    profilePic
 }) => (
     <div className="resume-default-cont" style={{ backgroundColor : themeColors.secondary }}>
         <Navbar className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor : themeColors.primary }} id="sideNav" fixed="top">
             <NavbarBrand className="mr-auto" href="#page-top">
                 <span className="d-block d-lg-none">{`${userData.firstName || 'Your'} ${userData.lastName || 'name'}`}</span>
                 <span className="d-none d-lg-block">
-                    <img className="img-fluid img-profile rounded-circle mx-auto mb-2" src={defaultImg} alt="" />
+                    <img className="img-fluid img-profile rounded-circle mx-auto mb-2" src={ profilePic || defaultImg} alt="" />
                 </span>
             </NavbarBrand>
             <NavbarToggler onClick={toggleNav} className="mr-2" />
@@ -198,7 +199,8 @@ resumeDefault.propTypes = {
     defaultImg : PropTypes.string.isRequired,
     toggleNav : PropTypes.func.isRequired,
     isOpen : PropTypes.bool.isRequired,
-    themeColors : PropTypes.object.isRequired
+    themeColors : PropTypes.object.isRequired,
+    profilePic : PropTypes.string.isRequired
 };
 
 export default resumeDefault;
