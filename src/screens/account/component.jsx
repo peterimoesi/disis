@@ -4,7 +4,7 @@ import { Input, Button } from 'mdbreact';
 
 import './styles.scss';
 
-const accountComponent = ({ onChange, error, onSubmit, email, password, showConfirmPass, confirmPassword }) => (
+const accountComponent = ({ onChange, error, onSubmit, email, password, signup, confirmPassword, firstName, lastName }) => (
     <div className="container">
         <div className="account-form-cont">
             <div className="row">
@@ -24,6 +24,34 @@ const accountComponent = ({ onChange, error, onSubmit, email, password, showConf
                         />
                     </div>
                 </div>
+                {
+                    signup &&
+                        <div className="col-lg-6 col-md-12">
+                            <div className="md-form">
+                                <Input
+                                    label="First Name"
+                                    name="firstName"
+                                    onChange={onChange}
+                                    value={firstName}
+                                    type="text"
+                                />
+                            </div>
+                        </div>
+                }
+                {
+                    signup &&
+                        <div className="col-lg-6 col-md-12">
+                            <div className="md-form">
+                                <Input
+                                    label="Last name"
+                                    name="lastName"
+                                    onChange={onChange}
+                                    value={lastName}
+                                    type="text"
+                                />
+                            </div>
+                        </div>
+                }
                 <div className="col-lg-12">
                     <div className="md-form">
                         <Input
@@ -36,7 +64,7 @@ const accountComponent = ({ onChange, error, onSubmit, email, password, showConf
                     </div>
                 </div>
                 {
-                    showConfirmPass &&
+                    signup &&
                         <div className="col-lg-12">
                             <div className="md-form">
                                 <Input
@@ -69,13 +97,17 @@ accountComponent.propTypes = {
     onSubmit : PropTypes.func.isRequired,
     confirmPassword : PropTypes.string,
     email : PropTypes.string.isRequired,
-    showConfirmPass : PropTypes.bool,
+    firstName : PropTypes.string,
+    lastName : PropTypes.string,
+    signup : PropTypes.bool,
     password : PropTypes.string.isRequired
 };
 
 accountComponent.defaultProps = {
     confirmPassword : null,
-    showConfirmPass : null,
+    firstName : null,
+    lastName : null,
+    signup : null,
     error           : null
 };
 

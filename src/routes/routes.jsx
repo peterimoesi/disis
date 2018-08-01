@@ -9,12 +9,14 @@ import Dashboard from '../screens/dashboard';
 import Userpage from '../screens/users';
 import DemoPreview from '../screens/demoPreview';
 import Login from '../screens/account/login';
+import Signup from '../screens/account/signup';
 
 const routes = (
     <Switch>
         <Route path="/app/preview/demo" component={DemoPreview} />
         <Route path="/app/dashboard" component={protectDashboard(Dashboard)} />
         <Route path="/app/login" component={Login} />
+        <Route path="/app/signup" component={Signup} />
         <Route exach path="/:id" component={Userpage} />
         <Route path="/" component={Landing} />
     </Switch>

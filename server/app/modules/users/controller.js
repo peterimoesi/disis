@@ -19,7 +19,7 @@ export const userRegister = async (req, res) => {
                 lastName : user.lastName,
                 experience : user.experience,
                 education : user.education,
-                social : user.social[0],
+                social : user.social[0] || {},
                 skills : user.skills,
                 defaultTheme : user.defaultTheme[0] || {},
                 image : user.image,
