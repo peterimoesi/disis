@@ -19,7 +19,7 @@ const UserSchema = new Schema({
     phoneNumber : {
         type : Number
     },
-    bio : {
+    biography : {
         type : String,
     },
     experience : {
@@ -36,11 +36,17 @@ const UserSchema = new Schema({
     },
     defaultTheme : {
         type : Array,
-        'default' : []
+        'default' : [{
+            id : '',
+            colors : {}
+        }]
     },
     social : {
         type : Array,
         'default' : []
+    },
+    interest : {
+        type : String
     },
     password : {
         type     : 'String',

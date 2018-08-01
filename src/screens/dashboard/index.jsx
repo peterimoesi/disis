@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'mdbreact';
+import PropTypes from 'prop-types';
 import Themes from '../themes/container';
 import Userform from '../../components/userPageForm';
 import ColorPicker from '../../components/colorPicker';
+import { removeUserCredentials } from '../../actions/setUserCredentials';
 
 import './styles.scss';
 
@@ -42,7 +44,7 @@ class Dashboard extends React.Component {
     render() {
         return (
             <div className="dashboard-cont">
-                <Themes themeType="default" />
+                <Themes userData={this.props.userData} themeType="default" />
                 <div className="sidebar">
                     <div className="sidebar-item">Change theme</div>
                     <div
@@ -61,7 +63,12 @@ class Dashboard extends React.Component {
                     >
                         Account details
                     </div>
-                    <div className="sidebar-item">logout</div>
+                    <div
+                        className="sidebar-item"
+                        onClick={() => this.props.removeUserCredentials()}
+                        role="button"
+                        tabIndex="0"
+                    >logout</div>
                 </div>
                 {
                     this.state.modal ?
@@ -77,6 +84,7 @@ class Dashboard extends React.Component {
                                 { this.state.modalContent === 'accountDetails' ?
                                     <div className="modal-user-info custom-scrollbar">
                                         <Userform
+                                            {...this.props}
                                             removePreview
                                             showSave
                                         />
@@ -99,8 +107,15 @@ class Dashboard extends React.Component {
     }
 }
 
-// function mapStateToProps({ themeColors }) {
-//     return
-// }
+function mapStateToProps({ userAuthentication }) {
+    return {
+        userData : userAuthentication.user.user
+    };
+}
 
-export default connect(null)(Dashboard);
+Dashboard.propTypes = {
+    removeUserCredentials : PropTypes.func.isRequired,
+    userData : PropTypes.object.isRequired
+};
+
+export default connect(mapStateToProps, { removeUserCredentials })(Dashboard);

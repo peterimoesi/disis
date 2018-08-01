@@ -9,7 +9,7 @@ export const userRegister = async (req, res) => {
     }
     try {
         const user = await User.create({ email, password, firstName, lastName, image : '' });
-        delete (user.password); // remove password froom response
+        console.log(user);
         return res.status(200).json({
             success : true,
             user : {
@@ -22,7 +22,10 @@ export const userRegister = async (req, res) => {
                 social : user.social[0],
                 skills : user.skills,
                 defaultTheme : user.defaultTheme[0] || {},
-                image : user.image
+                image : user.image,
+                phoneNumber : user.phoneNumber,
+                biography : user.biography,
+                interest : user.interest
             },
             token : `bearer ${createToken(user)}`
         });
@@ -43,8 +46,6 @@ export const userLogin = async (req, res) => {
                 }
                 bcrypt.compare(password, user.password, function (err, result) {
                     if (result === true) {
-                        delete (user.password); // remove password froom response
-                        user.social = user.social[0];
                         return res.status(200).json({
                             success : true,
                             user : {
@@ -54,10 +55,13 @@ export const userLogin = async (req, res) => {
                                 lastName : user.lastName,
                                 experience : user.experience,
                                 education : user.education,
-                                social : user.social[0],
+                                social : user.social[0] || {},
                                 skills : user.skills,
                                 defaultTheme : user.defaultTheme[0] || {},
-                                image : user.image
+                                image : user.image,
+                                phoneNumber : user.phoneNumber,
+                                biography : user.biography,
+                                interest : user.interest
                             },
                             token : `bearer ${createToken(user)}`
                         });
@@ -78,7 +82,9 @@ export const userUpdate = async (req, res) => {
     const {...args} = req.body;
     try {
         await User.findById(userId, function(err, result) {
-            console.log(args);
+            if (!result) {
+                return res.status(401).json({ error: true, errorMessage: 'Unauthorised' });
+            }
             for (let key in args) {
                 if (args.hasOwnProperty(key)) {
                     result[key] = args[key];
@@ -86,7 +92,6 @@ export const userUpdate = async (req, res) => {
             }
             result.save(function (err, updatedUser) {
                 if (err) { return res.status(401).json({ error: true, errorMessage: 'Cannot update user' }); }
-                delete (updatedUser.password); // remove password froom response
                 return res.status(200).json({
                     success : true,
                     user : {
@@ -99,7 +104,10 @@ export const userUpdate = async (req, res) => {
                         social : updatedUser.social[0],
                         skills : updatedUser.skills,
                         defaultTheme : updatedUser.defaultTheme[0] || {},
-                        image : updatedUser.image
+                        image : updatedUser.image,
+                        phoneNumber : updatedUser.phoneNumber,
+                        biography : updatedUser.biography,
+                        interest : updatedUser.interest
                     },
                 });
             });
@@ -108,5 +116,40 @@ export const userUpdate = async (req, res) => {
     catch (e) {
         console.log(e);
         return res.status(401).json({ error: true, errorMessage: 'Unauthorised' });
+    }
+};
+
+export const getUserDetails = async (req, res) => {
+    const { userId } = req.params;
+    try {
+        await User.findById(userId)
+            .select('email firstName lastName image experience education social interest biography skills defaultTheme phoneNumber')
+            .exec(function (err, user) {
+                if (!user) {
+                    return res.status(401).json({ error: true, errorMessage: 'User not found' });
+                }
+                return res.status(201).json({
+                    success : true,
+                    user : {
+                        id    : user._id,
+                        email : user.email,
+                        firstName : user.firstName,
+                        lastName : user.lastName,
+                        experience : user.experience,
+                        education : user.education,
+                        social : user.social[0] || {},
+                        skills : user.skills,
+                        defaultTheme : user.defaultTheme[0] || {},
+                        image : user.image,
+                        phoneNumber : user.phoneNumber,
+                        biography : user.biography,
+                        interest : user.interest
+                    }
+                }); 
+            });
+    }
+    catch (e) {
+        console.log(e);
+        return res.status(401).json({ error: true, errorMessage: 'Error finding User' });
     }
 };

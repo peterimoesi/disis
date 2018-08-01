@@ -1,0 +1,8 @@
+.top-nav-bar {
+  z-index: 1000; }
+  @media screen and (min-width: 600px) {
+    .top-nav-bar {
+      padding-top: 5px !important;
+      padding-bottom: 5px !important; } }
+  .top-nav-bar .navbar-brand {
+    color: #f9f9f9; }

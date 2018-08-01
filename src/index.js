@@ -10,6 +10,7 @@ import * as Cookies from 'js-cookie';
 import reducers from './reducers';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+import { removeUserCredentials } from './actions/setUserCredentials';
 
 import history from './routes/history';
 
@@ -35,7 +36,7 @@ if (userCredentials && token) {
         store.dispatch({ type : 'LOGIN' });
     } catch (e) {
         console.error(e);
-        // store.dispatch(logout());
+        store.dispatch(removeUserCredentials());
     }
 }
 

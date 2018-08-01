@@ -3,7 +3,8 @@ const initialData = {
         experience : [],
         education : [],
         skills : [],
-        social : []
+        social : [],
+        defaultTheme : {}
     }
 };
 
@@ -12,6 +13,16 @@ export default (state = initialData, action) => {
     case 'SAVE_FOR_PREVIEW':
         return {
             data : action.data
+        };
+    case 'CLEAR_PREVIEW':
+        return {
+            data : {
+                experience : [],
+                education : [],
+                skills : [],
+                social : [],
+                defaultTheme : {}
+            }
         };
     default:
         return state;

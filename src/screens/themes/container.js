@@ -31,16 +31,15 @@ class ThemesContainer extends React.Component {
     }
 }
 
-function mapStateToProps({ previewData, themeColors, userAuthentication }) {
+function mapStateToProps({ themeColors }) {
     return {
-        userData : userAuthentication.isAuthenticated ? userAuthentication.user.user : previewData.data,
         themeColors
     };
 }
 
 ThemesContainer.propTypes = {
     themeType : PropTypes.string,
-    userData  : PropTypes.object.isRequired
+    // userData  : PropTypes.object.isRequired
 };
 
 ThemesContainer.defaultProps = {

@@ -9,7 +9,10 @@ import {
     // Collapse,
     // NavLinkContainer
 } from 'mdbreact';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
+import { removeUserCredentials } from '../../actions/setUserCredentials';
 import './styles.scss';
 
 class NavbarComponent extends React.Component {
@@ -24,18 +27,44 @@ class NavbarComponent extends React.Component {
                     <NavbarBrand href="#">
                         DISIS
                     </NavbarBrand>
-                    <NavbarNav right>
-                        <NavItem>
-                            <NavLink to="/app/login">Login</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink to="/app/signup">Signup</NavLink>
-                        </NavItem>
-                    </NavbarNav>
+                    {
+                        this.props.isAuthenticated ?
+                            <NavbarNav right>
+                                <NavItem>
+                                    <NavLink to="/app/dashboard">My page</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink
+                                        to="/app/login"
+                                        onClick={e => { e.preventDefault(); this.props.removeUserCredentials(); }}
+                                    >Logout</NavLink>
+                                </NavItem>
+                            </NavbarNav> :
+                            <NavbarNav right>
+                                <NavItem>
+                                    <NavLink to="/app/login">Login</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink to="/app/signup">Signup</NavLink>
+                                </NavItem>
+                            </NavbarNav>
+                    }
+                    
                 </div>
             </Navbar>
         );
     }
 }
 
-export default NavbarComponent;
+function mapStateToProps({ userAuthentication }) {
+    return {
+        isAuthenticated : userAuthentication.isAuthenticated
+    };
+}
+
+NavbarComponent.propTypes  = {
+    isAuthenticated : PropTypes.bool.isRequired,
+    removeUserCredentials : PropTypes.func.isRequired
+};
+
+export default connect(mapStateToProps, { removeUserCredentials })(NavbarComponent);

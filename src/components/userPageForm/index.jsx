@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import cloneDeep from 'lodash/cloneDeep';
 
 import UserFormComponent from './component';
-import { onPreview } from './actions';
+import saveForPreview from '../../actions/saveForPreview';
+import { updateUser } from './actions';
 
 const today = new Date();
 
@@ -43,11 +45,13 @@ class UserForm extends React.Component {
         this.onSkillChange = this.onSkillChange.bind(this);
         this.onPreview = this.onPreview.bind(this);
         this.socailOnChange = this.socailOnChange.bind(this);
+        this.onSave = this.onSave.bind(this);
     }
 
     componentDidMount() {
         if (this.props.isAuthenticated) {
-            this.setState({ userDetails : this.props.userData });
+            // spread operator does not make a deep copy of object
+            this.setState({ userDetails : cloneDeep(this.props.userData) });
         }
     }
 
@@ -126,8 +130,28 @@ class UserForm extends React.Component {
     }
 
     onPreview() {
-        this.props.onPreview(this.state.userDetails);
+        this.props.saveForPreview(this.state.userDetails);
         this.props.history.push('/app/preview/demo');
+    }
+
+    onSave() {
+        const { userDetails } = this.state;
+        const { userData, token } = this.props;
+
+        const updated = {};
+        Object.keys(userDetails).forEach(key => {
+            if (typeof userDetails[key] === 'object') {
+                if ( JSON.stringify(userDetails[key]) !== JSON.stringify(userData[key])) {
+                    updated[key] = userDetails[key];
+                }
+            } else {
+                if ( userDetails[key] !== userData[key]) {
+                    updated[key] = userDetails[key];
+                }
+            }
+        });
+
+        this.props.updateUser(updated, userData.id, token);
     }
 
     socailOnChange(e) {
@@ -138,7 +162,7 @@ class UserForm extends React.Component {
 
 
     render() {
-        console.log(this.state.currentPage);
+        console.log(this.props.userData);
         return (
             <div className="user-form-container">
                 <div>
@@ -160,6 +184,7 @@ class UserForm extends React.Component {
                     onSkillChange={this.onSkillChange}
                     onPreview={this.onPreview}
                     socailOnChange={this.socailOnChange}
+                    onSave={this.onSave}
                 />
             </div>
         );
@@ -167,21 +192,25 @@ class UserForm extends React.Component {
 }
 
 UserForm.propTypes = {
-    onPreview : PropTypes.func.isRequired,
+    saveForPreview : PropTypes.func.isRequired,
     history : PropTypes.object.isRequired,
     isAuthenticated : PropTypes.bool.isRequired,
+    updateUser : PropTypes.func.isRequired,
     userData : PropTypes.object,
+    token : PropTypes.string
 };
 
 UserForm.defaultProps = {
-    userData : null
+    userData : null,
+    token : null
 };
 
 function mapStateToProps({ userAuthentication }) {
     return {
         isAuthenticated : userAuthentication.isAuthenticated,
+        token : userAuthentication.user.token,
         userData : userAuthentication.user.user,
     };
 }
 
-export default connect(mapStateToProps, { onPreview })(UserForm);
+export default connect(mapStateToProps, { saveForPreview, updateUser })(UserForm);

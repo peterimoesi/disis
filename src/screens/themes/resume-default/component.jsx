@@ -8,11 +8,19 @@ import './css/resume.scss';
 const months = [ 'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December' ];
 
-function parseMonth (date) {
-    return `${months(date.getMonth())} ${date.getDate()}`;
+function parseMonth (d, c) {
+    const date = new Date(d);
+    const compareDate = c ? new Date(c) : null;
+    return `${months[date.getMonth()]} ${date.getDate()} ${compareDate && date.getFullYear() > compareDate.getFullYear() ? date.getFullYear() : ''}`;
 }
 
-const resumeDefault = ({ userData, defaultImg, toggleNav, isOpen, themeColors }) => (
+const resumeDefault = ({
+    userData,
+    defaultImg,
+    toggleNav,
+    isOpen,
+    themeColors
+}) => (
     <div className="resume-default-cont" style={{ backgroundColor : themeColors.secondary }}>
         <Navbar className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor : themeColors.primary }} id="sideNav" fixed="top">
             <NavbarBrand className="mr-auto" href="#page-top">
@@ -57,7 +65,7 @@ const resumeDefault = ({ userData, defaultImg, toggleNav, isOpen, themeColors })
                         {
                             Object.keys(userData.social).map((key, i) => (
                                 userData.social[key] ? 
-                                    <li className="list-inline-item">
+                                    <li key={key} className="list-inline-item">
                                         <a target="_blank" rel="noopener noreferrer" href={userData.social[key]}>
                                             <span className="fa-stack fa-lg">
                                                 <i className="fa fa-circle fa-stack-2x"></i>
@@ -83,7 +91,7 @@ const resumeDefault = ({ userData, defaultImg, toggleNav, isOpen, themeColors })
                                     <p>{exp.jobDescription}</p>
                                 </div>
                                 <div className="resume-date text-md-right">
-                                    <span style={{ color : themeColors.primary }}>{parseMonth(exp.startDate)} - {exp.endDate ? parseMonth(exp.startDate) : 'present'}</span>
+                                    <span style={{ color : themeColors.primary }}>{parseMonth(exp.startDate)} - {exp.endDate ? parseMonth(exp.endDate, exp.startDate) : 'present'}</span>
                                 </div>
                             </div>
                         ))

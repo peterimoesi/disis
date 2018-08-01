@@ -26,7 +26,9 @@ const userDetailsForm = ({
     onPreview,
     socailOnChange,
     removePreview,
-    showSave
+    showSave,
+    onSave,
+    isAuthenticated
 }) => (
     <div>
         { currentPage === 0 &&
@@ -66,6 +68,7 @@ const userDetailsForm = ({
                             name="email"
                             onChange={onChange}
                             value={userDetails.email}
+                            disabled={isAuthenticated}
                         />
                     </div>
                     <div className="col-lg-4">
@@ -135,7 +138,7 @@ const userDetailsForm = ({
                                                     onChange={(e, value) => dateChange(i, 'experience', 'startDate', value)}
                                                     autoOk={true}
                                                     floatingLabelText="Start Date"
-                                                    defaultDate={userDetails.experience[i].startDate}
+                                                    defaultDate={new Date(userDetails.experience[i].startDate)}
                                                 />
                                             </div>
                                         </MuiThemeProvider>
@@ -149,8 +152,8 @@ const userDetailsForm = ({
                                                     onChange={(e, value) => dateChange(i, 'experience', 'endDate', value)}
                                                     autoOk={true}
                                                     floatingLabelText="End Date"
-                                                    minDate={userDetails.experience[i].startDate}
-                                                    value={userDetails.experience[i].endDate}
+                                                    minDate={new Date(userDetails.experience[i].startDate)}
+                                                    value={userDetails.experience[i].endDate ? new Date(userDetails.experience[i].endDate) : ''}
                                                 />
                                             </div>
                                         </MuiThemeProvider>
@@ -246,7 +249,7 @@ const userDetailsForm = ({
                                                     onChange={(e, value) => dateChange(i, 'education', 'startDate', value)}
                                                     autoOk={true}
                                                     floatingLabelText="Start Date"
-                                                    defaultDate={userDetails.education[i].startDate}
+                                                    defaultDate={new Date(userDetails.education[i].startDate)}
                                                 />
                                             </div>
                                         </MuiThemeProvider>
@@ -260,8 +263,8 @@ const userDetailsForm = ({
                                                     onChange={(e, value) => dateChange(i, 'education', 'endDate', value)}
                                                     autoOk={true}
                                                     floatingLabelText="End Date"
-                                                    minDate={userDetails.education[i].startDate}
-                                                    value={userDetails.education[i].endDate}
+                                                    minDate={new Date(userDetails.education[i].startDate)}
+                                                    value={userDetails.education[i].endDate ? new Date(userDetails.education[i].endDate) : ''}
                                                 />
                                             </div>
                                         </MuiThemeProvider>
@@ -431,7 +434,7 @@ const userDetailsForm = ({
             {
                 showSave &&
                 <div className="col-lg-4 buttons-cont">
-                    <Button color="success" onClick={onPreview}>Save</Button>
+                    <Button color="success" onClick={onSave}>Save</Button>
                 </div>
             }
         </div>
@@ -455,6 +458,8 @@ userDetailsForm.propTypes = {
     socailOnChange : PropTypes.func.isRequired,
     removePreview : PropTypes.bool,
     showSave : PropTypes.bool,
+    onSave : PropTypes.func.isRequired,
+    isAuthenticated : PropTypes.bool.isRequired
 };
 
 userDetailsForm.defaultProps = {
