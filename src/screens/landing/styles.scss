@@ -1,7 +1,7 @@
 .background-video {
     position: relative;
     height : 100vh;
-    max-height: 700px;
+    max-height: 600px;
     width: 100%;
     overflow: hidden;
     video {
@@ -28,6 +28,44 @@
         &:active,
         &:focus {
             outline: none;
+        }
+    }
+    .landing-main {
+        color : #f9f9f9;
+        font-size: 9rem;
+        @media screen and (max-width : 350px) {
+            font-size: 4rem;
+        }
+    }
+    button {
+        font-size: 15px;
+    }
+    .list-cont {
+        color: #f9f9f9;
+        line-height: 1.6;
+        font-size: 19px;
+        margin-top: 30px;
+        word-spacing: 2px;
+        font-weight: 300;
+        @media screen and (max-width : 992px){
+            line-height: 1.2;
+            word-spacing: 1px;
+            font-size: 16px;
+
+        }
+        li {
+            margin-bottom: 20px;
+        }
+    }
+    .external-list {
+        @media screen and (max-width : 992px) and (min-width : 768px) {
+            display: none;
+        }
+        color : #494949;
+        & > div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     }
 }

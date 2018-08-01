@@ -1,7 +1,7 @@
 .background-video {
   position: relative;
   height: 100vh;
-  max-height: 700px;
+  max-height: 600px;
   width: 100%;
   overflow: hidden; }
   .background-video video {
@@ -22,3 +22,38 @@
   border: 0; }
   .home-landing .button-no-border:hover, .home-landing .button-no-border:visited, .home-landing .button-no-border:active, .home-landing .button-no-border:focus {
     outline: none; }
+
+.home-landing .landing-main {
+  color: #f9f9f9;
+  font-size: 9rem; }
+  @media screen and (max-width: 350px) {
+    .home-landing .landing-main {
+      font-size: 4rem; } }
+
+.home-landing button {
+  font-size: 15px; }
+
+.home-landing .list-cont {
+  color: #f9f9f9;
+  line-height: 1.6;
+  font-size: 19px;
+  margin-top: 30px;
+  word-spacing: 2px;
+  font-weight: 300; }
+  @media screen and (max-width: 992px) {
+    .home-landing .list-cont {
+      line-height: 1.2;
+      word-spacing: 1px;
+      font-size: 16px; } }
+  .home-landing .list-cont li {
+    margin-bottom: 20px; }
+
+.home-landing .external-list {
+  color: #494949; }
+  @media screen and (max-width: 992px) and (min-width: 768px) {
+    .home-landing .external-list {
+      display: none; } }
+  .home-landing .external-list > div {
+    display: flex;
+    align-items: center;
+    justify-content: center; }

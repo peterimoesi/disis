@@ -1,10 +1,18 @@
 .top-nav-bar {
     z-index: 1000;
+    position: fixed !important;
+    background-color: rgba(0, 0, 0, 0.61);
     @media screen and (min-width: 600px) {
         padding-top : 5px !important;
         padding-bottom: 5px !important; 
     }
     .navbar-brand {
         color : #f9f9f9;
+    }
+    & > .container::after, .container::before {
+        content: none;
+    }
+    & > .container>.navbar-collapse, .container-fluid>.navbar-collapse {
+        margin: 0 10px;
     }
 }

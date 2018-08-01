@@ -1,8 +1,14 @@
 .top-nav-bar {
-  z-index: 1000; }
+  z-index: 1000;
+  position: fixed !important;
+  background-color: rgba(0, 0, 0, 0.61); }
   @media screen and (min-width: 600px) {
     .top-nav-bar {
       padding-top: 5px !important;
       padding-bottom: 5px !important; } }
   .top-nav-bar .navbar-brand {
     color: #f9f9f9; }
+  .top-nav-bar > .container::after, .top-nav-bar .container::before {
+    content: none; }
+  .top-nav-bar > .container > .navbar-collapse, .top-nav-bar .container-fluid > .navbar-collapse {
+    margin: 0 10px; }
