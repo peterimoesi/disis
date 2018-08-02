@@ -67,7 +67,7 @@ class Dashboard extends React.Component {
     saveImage() {
         this.setState({ waiting : true });
         this.props.uploadImg(this.props.userData.id, this.state.uploadImage, this.props.token)
-            .then(() => this.setState({ waiting : false }));
+            .then(() => this.setState({ waiting : false,  profilePic : this.state.uploadImage, modal : false  }));
     }
 
     handleThemeSave() {
