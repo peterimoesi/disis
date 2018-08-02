@@ -122,18 +122,18 @@ class Dashboard extends React.Component {
                     this.state.modal ?
                         <div className="modal-container">
                             <div className="modal-child">
-                                <div className="user-page-link">
-                                    Your url :
-                                    <a href={`${window.location.origin}/${this.props.userData.id}`} target="_blank" rel="noopener noreferrer">
-                                        {`${window.location.origin}/${this.props.userData.id}`}
-                                    </a>
-                                </div>
                                 <div className="close-cont">
                                     <i className="modal-close fa fa-close"
                                         role="button"
                                         tabIndex="0"
                                         onClick={this.toggle}
                                     />
+                                </div>
+                                <div className="user-page-link">
+                                    Your url :
+                                    <a href={`${window.location.origin}/${this.props.userData.id}`} target="_blank" rel="noopener noreferrer">
+                                        {`${window.location.origin}/${this.props.userData.id}`}
+                                    </a>
                                 </div>
                                 { this.state.modalContent === 'accountDetails' ?
                                     <div>

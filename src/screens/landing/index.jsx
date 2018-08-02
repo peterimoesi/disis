@@ -40,8 +40,8 @@ class Landing extends React.Component {
                                 <div className="col-lg-6 col-md-6 hiddden-sm hidden-xs">
                                     <div className="list-cont">
                                         <ul>
-                                            <li>Host your Resume to your customizable page in seconds</li>
-                                            <li>Use and share your own custom link with future employer</li>
+                                            <li>Host your web CV on your customizable page in seconds</li>
+                                            <li>Use and share your own custom link with future employers</li>
                                             <li>Select one of the many custom themes</li>
                                             <li>Make the theme your own from 16 million color combinations</li>
                                             <li>Update your information in a matter of seconds</li>
@@ -57,12 +57,12 @@ class Landing extends React.Component {
                     <h3 className="txt-center">About</h3>
                     <div>
                         <ul>
-                            <li>Host your Resume to your customizable page in seconds</li>
-                            <li>Use and share your own custom link with future employer</li>
+                            <li>Host your web CV on your customizable page in seconds</li>
+                            <li>Use and share your own custom web CV link with future employer</li>
                             <li>Select one of the many custom themes</li>
                             <li>Make the theme your own from 16 million color combinations</li>
                             <li>Update your information in a matter of seconds</li>
-                            <li>Avoid the hassle of downloading, editing and uploading PDFs</li>
+                            <li>Avoid the hassle of downloading, editing and uploading CV PDFs</li>
                         </ul>
                     </div>
                 </div>

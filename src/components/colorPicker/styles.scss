@@ -1,6 +1,6 @@
 .theme-selector {
     position: fixed;
-    top: 0;
+    bottom: 0;
     left: 0;
     width: 100%;
     display: flex;
@@ -28,12 +28,12 @@
         transition-timing-function: ease-in-out;
         visibility: hidden;
         opacity: 0;
-        height: 0;
         background: #f9f9f9;
+        transform : translateY(100%);
         &.chrome-picker-show {
             visibility: visible;
             opacity: 1;
-            height: auto;
+            transform : translateY(0%);
         }
         .chrome-picker-padding {
             padding: 20px;

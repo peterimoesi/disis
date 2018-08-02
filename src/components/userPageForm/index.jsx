@@ -166,7 +166,7 @@ class UserForm extends React.Component {
         return (
             <div className="user-form-container">
                 <div>
-                    <h2 className="title mb-5 txt-center">Please fill in the information</h2>
+                    <h2 className="title mb-5 txt-center">Start creating your web CV</h2>
                 </div>
                 <UserFormComponent
                     {...this.props}

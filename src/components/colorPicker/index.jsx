@@ -19,20 +19,6 @@ class ColorPicker extends React.Component {
         const { themeColors, onColorChange } = this.props;
         return (
             <div className="theme-selector">
-                <h3>Change theme</h3>
-                <div className="color-picker-cont">
-                    {
-                        Object.keys(themeColors).map(key => (
-                            <div
-                                className="color-preview"
-                                key={key} style={{ backgroundColor : themeColors[key] }}
-                                tabIndex="0"
-                                role="button"
-                                onClick={() => this.setState({ activeColor : key })}
-                            />
-                        ))
-                    }
-                </div>
                 <div className={classnames('chrome-picker-cont', { 'chrome-picker-show' : this.state.activeColor })}>
                     <div className="chrome-picker-padding">
                         <i
@@ -50,6 +36,20 @@ class ColorPicker extends React.Component {
                         />
                     </div>
                 </div>
+                <div className="color-picker-cont">
+                    {
+                        Object.keys(themeColors).map(key => (
+                            <div
+                                className="color-preview"
+                                key={key} style={{ backgroundColor : themeColors[key] }}
+                                tabIndex="0"
+                                role="button"
+                                onClick={() => this.setState({ activeColor : key })}
+                            />
+                        ))
+                    }
+                </div>
+                <h3>Change theme</h3>
             </div>
         );
     }
