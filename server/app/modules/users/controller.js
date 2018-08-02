@@ -98,7 +98,7 @@ export const userUpdate = async (req, res) => {
                         lastName : updatedUser.lastName,
                         experience : updatedUser.experience,
                         education : updatedUser.education,
-                        social : updatedUser.social[0],
+                        social : updatedUser.social[0] || {},
                         skills : updatedUser.skills,
                         defaultTheme : updatedUser.defaultTheme[0] || {},
                         phoneNumber : updatedUser.phoneNumber,
