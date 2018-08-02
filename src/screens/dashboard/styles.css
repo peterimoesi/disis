@@ -59,7 +59,24 @@
   font-size: 15px;
   color: #f9f9f9;
   background: rgba(0, 0, 0, 0.5); }
+  .user-page-link a {
+    color: #f9f9f9;
+    margin-left: 5px; }
 
 .picture-upload {
   margin: 30px;
   margin-bottom: 0; }
+
+.theme-preview-cont {
+  margin-top: 30px; }
+  .theme-preview-cont .theme-item {
+    height: 280px;
+    width: 200px;
+    cursor: pointer;
+    overflow: hidden; }
+    .theme-preview-cont .theme-item img {
+      transition-duration: 400ms;
+      height: 100%;
+      width: 100%; }
+    .theme-preview-cont .theme-item:hover img {
+      transform: scale(1.2); }

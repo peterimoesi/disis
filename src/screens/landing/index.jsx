@@ -68,7 +68,13 @@ class Landing extends React.Component {
                 </div>
                 <div className="container" id="user-form">
                     <UserForm {...this.props} />
-                </div> 
+                </div>
+                <div className="footer-cont">
+                    <div className="container">
+                        <footer>
+                        </footer>
+                    </div>
+                </div>
             </div>
         );
     }

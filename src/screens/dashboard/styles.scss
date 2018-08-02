@@ -65,8 +65,31 @@
     font-size: 15px;
     color: #f9f9f9;
     background: rgba(0, 0, 0, 0.5);
+    a {
+        color: #f9f9f9;
+        margin-left : 5px;
+    }
 }
 .picture-upload {
     margin: 30px;
     margin-bottom: 0;
+}
+.theme-preview-cont {
+    margin-top: 30px;
+    .theme-item {
+        height : 280px;
+        width:  200px;
+        cursor: pointer;
+        overflow: hidden;
+        img {
+            transition-duration: 400ms;
+            height: 100%;
+            width: 100%;
+        }
+        &:hover {
+            img {
+                transform: scale(1.2)
+            }
+        }
+    }
 }

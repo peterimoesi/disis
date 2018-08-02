@@ -10,6 +10,8 @@ import { removeUserCredentials } from '../../actions/setUserCredentials';
 import { uploadImg, getUserImage } from './action';
 import { updateUser } from '../../components/userPageForm/actions';
 
+import defaultTheme from '../../public/imgs/themes/default.png';
+
 import './styles.scss';
 
 class Dashboard extends React.Component {
@@ -85,7 +87,14 @@ class Dashboard extends React.Component {
                     themeType="default"
                 />
                 <div className="sidebar">
-                    <div className="sidebar-item">Change theme</div>
+                    <div
+                        className="sidebar-item"
+                        onClick={() => this.toggle('changeTheme')}
+                        role="button"
+                        tabIndex="0"
+                    >
+                        Change theme
+                    </div>
                     <div
                         className="sidebar-item"
                         onClick={() => this.toggle('editTheme')}
@@ -114,7 +123,10 @@ class Dashboard extends React.Component {
                         <div className="modal-container">
                             <div className="modal-child">
                                 <div className="user-page-link">
-                                    {`${window.location.origin}/${this.props.userData.id}`}
+                                    Your url :
+                                    <a href={`${window.location.origin}/${this.props.userData.id}`} target="_blank" rel="noopener noreferrer">
+                                        {`${window.location.origin}/${this.props.userData.id}`}
+                                    </a>
                                 </div>
                                 <div className="close-cont">
                                     <i className="modal-close fa fa-close"
@@ -149,6 +161,14 @@ class Dashboard extends React.Component {
                                         <ColorPicker />
                                         <div className="buttons-cont txt-center" style={{ marginTop : '10px' }}>
                                             <Button color="success" onClick={this.handleThemeSave}>Save</Button>
+                                        </div>
+                                    </div> : null
+                                }
+                                { this.state.modalContent === 'changeTheme' ?
+                                    <div className="modal-user-info custom-scrollbar">
+                                        <div className="theme-preview-cont">
+                                            <div className="theme-item img-thumbnail"><img className="" src={defaultTheme} /></div>
+                                            <div className="txt-center"style={{ marginTop : '30px' }}>More themes are coming soon...</div>
                                         </div>
                                     </div> : null
                                 }

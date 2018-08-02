@@ -1,5 +1,5 @@
 {
-    "files.eol": "\r\n",
+    "files.eol": "\n",
     "eslint.options": {
         "configFile": "C:/Users/peter/disis/.eslintrc.js"
     }
