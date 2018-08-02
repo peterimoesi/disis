@@ -1,0 +1,229 @@
+/*! 
+ * Template Name: Orbit - Bootstrap 4 Resume/CV Template for Developers
+ * Version: 2.0
+ * Author: Xiaoying Riley
+ * Copyright: 3rd Wave Media
+ * Twitter: @3rdwave_themes
+ * License: Creative Commons Attribution 3.0 License
+ * Website: http://themes.3rdwavemedia.com/
+*/
+#orbit-theme {
+  min-height: 100vh;
+  padding-top: 30px;
+  font-family: 'Roboto', sans-serif;
+  color: #545E6C;
+  background: #f5f5f5;
+  font-size: 14px;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+  #orbit-theme h1, #orbit-theme h2, #orbit-theme h3, #orbit-theme h4, #orbit-theme h5, #orbit-theme h6 {
+    font-weight: 700; }
+  #orbit-theme a {
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -ms-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out; }
+  #orbit-theme a:hover {
+    text-decoration: underline;
+    color: #1a454f; }
+  #orbit-theme a:focus {
+    text-decoration: none; }
+  #orbit-theme p {
+    line-height: 1.5; }
+  #orbit-theme .wrapper {
+    max-width: 960px;
+    margin: 0 auto;
+    position: relative;
+    -webkit-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); }
+  #orbit-theme .sidebar-wrapper {
+    position: absolute;
+    right: 0;
+    width: 240px;
+    height: 100%;
+    min-height: 800px;
+    color: #fff; }
+  #orbit-theme .sidebar-wrapper a {
+    color: #fff; }
+  #orbit-theme .sidebar-wrapper .profile-container {
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.2);
+    text-align: center;
+    color: #fff; }
+  #orbit-theme .sidebar-wrapper .name {
+    font-size: 32px;
+    font-weight: 900;
+    margin-top: 0;
+    margin-bottom: 10px; }
+  #orbit-theme .sidebar-wrapper .tagline {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 0; }
+  #orbit-theme .sidebar-wrapper .profile {
+    margin-bottom: 15px;
+    max-height: 100%;
+    max-width: 100%;
+    border-radius: 40px; }
+  #orbit-theme .sidebar-wrapper .contact-list i {
+    margin-right: 5px;
+    font-size: 18px;
+    vertical-align: middle; }
+  #orbit-theme .sidebar-wrapper .contact-list li {
+    margin-bottom: 15px; }
+  #orbit-theme .sidebar-wrapper .contact-list li:last-child {
+    margin-bottom: 0; }
+  #orbit-theme .sidebar-wrapper .contact-list .email i {
+    font-size: 14px; }
+  #orbit-theme .sidebar-wrapper .container-block {
+    padding: 30px; }
+  #orbit-theme .sidebar-wrapper .container-block-title {
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 15px; }
+  #orbit-theme .sidebar-wrapper .degree {
+    font-size: 14px;
+    margin-top: 0;
+    margin-bottom: 5px; }
+  #orbit-theme .sidebar-wrapper .education-container .item {
+    margin-bottom: 15px; }
+  #orbit-theme .sidebar-wrapper .education-container .item:last-child {
+    margin-bottom: 0; }
+  #orbit-theme .sidebar-wrapper .education-container .meta {
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 500;
+    margin-bottom: 0px;
+    margin-top: 0;
+    font-size: 14px; }
+  #orbit-theme .sidebar-wrapper .education-container .time {
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 500;
+    margin-bottom: 0px; }
+  #orbit-theme .sidebar-wrapper .languages-container .lang-desc {
+    color: rgba(255, 255, 255, 0.6); }
+  #orbit-theme .sidebar-wrapper .languages-list {
+    margin-bottom: 0; }
+  #orbit-theme .sidebar-wrapper .languages-list li {
+    margin-bottom: 10px; }
+  #orbit-theme .sidebar-wrapper .languages-list li:last-child {
+    margin-bottom: 0; }
+  #orbit-theme .sidebar-wrapper .interests-list {
+    margin-bottom: 0; }
+  #orbit-theme .sidebar-wrapper .interests-list li {
+    margin-bottom: 10px; }
+  #orbit-theme .sidebar-wrapper .interests-list li:last-child {
+    margin-bottom: 0; }
+  #orbit-theme .main-wrapper {
+    background: #fff;
+    padding: 60px;
+    padding-right: 300px;
+    min-height: 900px; }
+  #orbit-theme .main-wrapper .section-title {
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 500;
+    color: #2d7788;
+    position: relative;
+    margin-top: 0;
+    margin-bottom: 20px; }
+  #orbit-theme .main-wrapper .section-title .icon-holder {
+    width: 30px;
+    height: 30px;
+    margin-right: 8px;
+    display: inline-block;
+    color: #fff;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    background: #2d7788;
+    text-align: center;
+    font-size: 16px;
+    position: relative;
+    top: -1px; }
+  #orbit-theme .main-wrapper .section-title .icon-holder i {
+    font-size: 14px;
+    margin-top: 9px; }
+  #orbit-theme .main-wrapper .section {
+    margin-bottom: 60px; }
+  #orbit-theme .main-wrapper .experiences-section .item {
+    margin-bottom: 30px; }
+  #orbit-theme .main-wrapper .upper-row {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 2px; }
+  #orbit-theme .main-wrapper .job-title {
+    color: #3F4650;
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: 500; }
+  #orbit-theme .main-wrapper .time {
+    position: absolute;
+    right: 0;
+    top: 0; }
+  #orbit-theme .main-wrapper .company {
+    margin-bottom: 10px; }
+  #orbit-theme .main-wrapper .project-title {
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 5px; }
+  #orbit-theme .main-wrapper .projects-section .intro {
+    margin-bottom: 30px; }
+  #orbit-theme .main-wrapper .projects-section .item {
+    margin-bottom: 15px; }
+  #orbit-theme .skillset .item {
+    margin-bottom: 15px;
+    overflow: hidden; }
+  #orbit-theme .skillset .level-title {
+    font-size: 14px;
+    margin-top: 0;
+    margin-bottom: 12px; }
+  #orbit-theme .skillset .level-bar {
+    height: 12px;
+    background: #f5f5f5;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box; }
+  #orbit-theme .footer {
+    padding: 30px;
+    padding-top: 60px; }
+  #orbit-theme .footer .copyright {
+    line-height: 1.6;
+    color: #545E6C;
+    font-size: 13px; }
+  #orbit-theme .footer .fa-heart {
+    color: #fb866a; }
+  @media (max-width: 767.98px) {
+    #orbit-theme .sidebar-wrapper {
+      position: static;
+      width: inherit; }
+    #orbit-theme .main-wrapper {
+      padding: 30px; }
+    #orbit-theme .main-wrapper .time {
+      position: static;
+      display: block;
+      margin-top: 5px; }
+    #orbit-theme .main-wrapper .upper-row {
+      margin-bottom: 0; } }
+  @media (min-width: 992px) {
+    #orbit-theme .skillset .level-title {
+      display: inline-block;
+      float: left;
+      width: 30%;
+      margin-bottom: 0; } }

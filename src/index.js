@@ -40,8 +40,6 @@ if (userCredentials && token) {
     }
 }
 
-console.log(store);
-
 ReactDOM.render(
     <Provider store={store}>
         <ConnectedRouter history={history}>

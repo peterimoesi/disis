@@ -24,8 +24,13 @@
     position: relative;
     overflow-x: hidden;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
     @media screen and (min-height : 1350px) {
         min-height: 100vh;
+    }
+    #user-form {
+        flex-grow: 1;
     }
     .button-no-border {
         border : 0;
@@ -79,11 +84,6 @@
     background-color: rgba(0, 0, 0, 0.61);
     position: relative;
         width: 100%;
-        @media screen and (min-height : 1350px) {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-        }
     footer {
         height: 100px;
     }

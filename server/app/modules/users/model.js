@@ -22,6 +22,12 @@ const UserSchema = new Schema({
     biography : {
         type : String,
     },
+    title : {
+        type : String,
+    },
+    jobTitle : {
+        type : String,
+    },
     experience : {
         type : Array,
         'default' : []

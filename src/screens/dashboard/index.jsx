@@ -11,6 +11,7 @@ import { uploadImg, getUserImage } from './action';
 import { updateUser } from '../../components/userPageForm/actions';
 
 import defaultTheme from '../../public/imgs/themes/default.png';
+import orbitTheme from '../../public/imgs/themes/orbit.png';
 
 import './styles.scss';
 
@@ -27,8 +28,9 @@ class Dashboard extends React.Component {
         this.toggle = this.toggle.bind(this);
         this.handleKeyDown = this.handleKeyDown.bind(this);
         this.handleFileUpload = this.handleFileUpload.bind(this);
-        this.handleThemeSave = this.handleThemeSave.bind(this);
+        this.handleThemeColorSave = this.handleThemeColorSave.bind(this);
         this.saveImage = this.saveImage.bind(this);
+        this.handleThemeSelect = this.handleThemeSelect.bind(this);
     }
 
     componentDidMount() {
@@ -70,12 +72,22 @@ class Dashboard extends React.Component {
             .then(() => this.setState({ waiting : false,  profilePic : this.state.uploadImage, modal : false  }));
     }
 
-    handleThemeSave() {
+    handleThemeColorSave() {
         this.props.updateUser({ defaultTheme : {
-            id : 'default',
+            id : this.props.userData.defaultTheme.id || 'default',
             color : this.props.themeColors
         }
-        }, this.props.userData.id, this.props.token);
+        }, this.props.userData.id, this.props.token)
+            .then(() => this.setState({ waiting : false, modal : false  }));
+    }
+
+    handleThemeSelect(id) {
+        this.props.updateUser({ defaultTheme : {
+            id : id || 'default',
+            color : {}
+        }
+        }, this.props.userData.id, this.props.token)
+            .then(() => this.setState({ waiting : false }));
     }
 
     render() {
@@ -84,7 +96,7 @@ class Dashboard extends React.Component {
                 <Themes
                     profilePic={this.state.profilePic}
                     userData={this.props.userData}
-                    themeType="default"
+                    themeType={this.props.userData.defaultTheme.id}
                 />
                 <div className="sidebar">
                     <div
@@ -160,14 +172,31 @@ class Dashboard extends React.Component {
                                     <div className="modal-user-info custom-scrollbar">
                                         <ColorPicker />
                                         <div className="buttons-cont txt-center" style={{ marginTop : '10px' }}>
-                                            <Button color="success" onClick={this.handleThemeSave}>Save</Button>
+                                            <Button color="success" onClick={this.handleThemeColorSave}>Save</Button>
                                         </div>
                                     </div> : null
                                 }
                                 { this.state.modalContent === 'changeTheme' ?
                                     <div className="modal-user-info custom-scrollbar">
                                         <div className="theme-preview-cont">
-                                            <div className="theme-item img-thumbnail"><img className="" src={defaultTheme} /></div>
+                                            <div className="theme-select">
+                                                <div
+                                                    className="theme-item img-thumbnail"
+                                                    onClick={() => this.handleThemeSelect('default') }
+                                                    tabIndex="0"
+                                                    role="button"
+                                                >
+                                                    <img className="" src={defaultTheme} />
+                                                </div>
+                                                <div
+                                                    className="theme-item img-thumbnail"
+                                                    onClick={() => this.handleThemeSelect('orbit') }
+                                                    tabIndex="0"
+                                                    role="button"
+                                                >
+                                                    <img className="" src={orbitTheme} />
+                                                </div>
+                                            </div>
                                             <div className="txt-center"style={{ marginTop : '30px' }}>More themes are coming soon...</div>
                                         </div>
                                     </div> : null

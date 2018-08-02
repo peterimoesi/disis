@@ -5,22 +5,14 @@ import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } f
 
 import './css/resume.scss';
 
-const months = [ 'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December' ];
-
-function parseMonth (d, c) {
-    const date = new Date(d);
-    const compareDate = c ? new Date(c) : null;
-    return `${months[date.getMonth()]} ${date.getDate()} ${compareDate && date.getFullYear() > compareDate.getFullYear() ? date.getFullYear() : ''}`;
-}
-
 const resumeDefault = ({
     userData,
     defaultImg,
     toggleNav,
     isOpen,
     themeColors,
-    profilePic
+    profilePic,
+    parseMonth
 }) => (
     <div className="resume-default-cont" style={{ backgroundColor : themeColors.secondary }}>
         <Navbar className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor : themeColors.primary }} id="sideNav" fixed="top">
@@ -200,7 +192,8 @@ resumeDefault.propTypes = {
     toggleNav : PropTypes.func.isRequired,
     isOpen : PropTypes.bool.isRequired,
     themeColors : PropTypes.object.isRequired,
-    profilePic : PropTypes.string.isRequired
+    profilePic : PropTypes.string.isRequired,
+    parseMonth : PropTypes.func.isRequired
 };
 
 export default resumeDefault;
