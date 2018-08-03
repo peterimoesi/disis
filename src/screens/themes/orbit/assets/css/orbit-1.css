@@ -47,10 +47,12 @@
     #orbit-theme .wrapper > div {
       flex: 1; }
   #orbit-theme .sidebar-wrapper {
-    width: 240px;
     height: 100%;
     min-height: 800px;
     color: #fff; }
+    @media screen and (min-width: 430px) {
+      #orbit-theme .sidebar-wrapper {
+        max-width: 240px; } }
   #orbit-theme .sidebar-wrapper a {
     color: #fff; }
   #orbit-theme .sidebar-wrapper .profile-container {
