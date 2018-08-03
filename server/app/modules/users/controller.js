@@ -26,7 +26,8 @@ export const userRegister = async (req, res) => {
                 defaultTheme : user.defaultTheme[0] || {},
                 phoneNumber : user.phoneNumber,
                 biography : user.biography,
-                interest : user.interest
+                interest : user.interest,
+                languages : user.languages,
             },
             token : `bearer ${createToken(user)}`
         });
@@ -62,7 +63,8 @@ export const userLogin = async (req, res) => {
                                 defaultTheme : user.defaultTheme[0] || {},
                                 phoneNumber : user.phoneNumber,
                                 biography : user.biography,
-                                interest : user.interest
+                                interest : user.interest,
+                                languages : user.languages
                             },
                             token : `bearer ${createToken(user)}`
                         });
@@ -109,7 +111,8 @@ export const userUpdate = async (req, res) => {
                         defaultTheme : updatedUser.defaultTheme[0] || {},
                         phoneNumber : updatedUser.phoneNumber,
                         biography : updatedUser.biography,
-                        interest : updatedUser.interest
+                        interest : updatedUser.interest,
+                        languages : updatedUser.languages,
                     },
                 });
             });
@@ -142,6 +145,7 @@ export const getUserDetails = async (req, res) => {
                         experience : user.experience,
                         education : user.education,
                         social : user.social[0] || {},
+                        languages : user.languages,
                         skills : user.skills,
                         defaultTheme : user.defaultTheme[0] || {},
                         image : user.image,

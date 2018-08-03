@@ -52,7 +52,12 @@ const UserSchema = new Schema({
         'default' : []
     },
     interest : {
-        type : String
+        type : Array,
+        'default' : []
+    },
+    languages : {
+        type : Array,
+        'default' : []
     },
     password : {
         type     : 'String',

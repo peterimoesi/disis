@@ -135,7 +135,11 @@ const resumeDefault = ({
             <section className="resume-section p-3 p-lg-5 d-flex flex-column" id="interests">
                 <div className="my-auto">
                     <h2 className="mb-5">Interests</h2>
-                    <p>{userData.interest}</p>
+                    <ul className="fa-ul mb-0">
+                        {
+                            userData.interest.map((interest, i) => (<li key={i}><i className="fa-li fa fa-check" />{interest}</li>))
+                        }
+                    </ul>
                 </div>
             </section>
 

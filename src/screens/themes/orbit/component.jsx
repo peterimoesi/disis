@@ -26,11 +26,12 @@ const orbitTheme = ({
                 <div className="contact-container container-block">
                     <ul className="list-unstyled contact-list">
                         <li className="email"><i className="fa fa-envelope" /><a href={`mailto: ${userData.email}`}>{userData.email}</a></li>
+                        {userData.phoneNumber && <li className="phone"><i className="fa fa-phone" /><a href={`tel:${userData.phoneNumber}`}>{userData.phoneNumber}</a></li> }
                         {
                             Object.keys(userData.social).map(key => (
                                 userData.social[key] ? 
                                     <li key={key} className={userData.social[key]}>
-                                        <i className={`fa fa-${key}`}></i>
+                                        <i className={`fa fa-${key === 'portfolio' ? 'globe' : key}`}></i>
                                         <a target="_blank" rel="noopener noreferrer" href={userData.social[key]}>
                                             {userData.social[key]}
                                         </a>
@@ -61,14 +62,14 @@ const orbitTheme = ({
                     </ul>
                 </div> */}
             
-                {/* <div className="interests-container container-block">
+                <div className="interests-container container-block">
                     <h2 className="container-block-title">Interests</h2>
                     <ul className="list-unstyled interests-list">
-                        <li>Climbing</li>
-                        <li>Snowboarding</li>
-                        <li>Cooking</li>
+                        {
+                            userData.interest.map((interest, i) => (<li key={i}>{interest}</li>))
+                        }
                     </ul>
-                </div> */}
+                </div>
             
             </div>
         

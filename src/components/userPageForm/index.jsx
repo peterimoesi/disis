@@ -22,13 +22,16 @@ class UserForm extends React.Component {
                 linkedInhref : '',
                 experience : [],
                 education : [],
-                interest : '',
+                interest : [],
                 skills : [],
+                languages : [],
                 social : {
                     linkedin : '',
                     facebook : '',
                     twitter : '',
-                    instagram : ''
+                    instagram : '',
+                    portfolio : '',
+                    githube : ''
                 }
             },
             currentPage : 0
@@ -41,8 +44,9 @@ class UserForm extends React.Component {
         this.expEduOnchange = this.expEduOnchange.bind(this);
         this.selectDegree = this.selectDegree.bind(this);
         this.dateChange = this.dateChange.bind(this);
-        this.addNewSkill = this.addNewSkill.bind(this);
+        this.addNewSkillInterestLanguage = this.addNewSkillInterestLanguage.bind(this);
         this.onSkillChange = this.onSkillChange.bind(this);
+        this.onInterestChange = this.onInterestChange.bind(this);
         this.onPreview = this.onPreview.bind(this);
         this.socailOnChange = this.socailOnChange.bind(this);
         this.onSave = this.onSave.bind(this);
@@ -94,15 +98,27 @@ class UserForm extends React.Component {
         this.setState({ education });
     }
 
-    addNewSkill() {
-        const { skills } = this.state.userDetails;
-        skills.push('');
-        this.setState({ skills });
+    addNewSkillInterestLanguage(value) {
+        const { skills, interest, languages } = this.state.userDetails;
+        if (value === 0) {
+            skills.push('');
+        } else if (value === 1) {
+            interest.push('');
+        } else if (value === 2) {
+            languages.push('');
+        }
+        this.setState({ skills, interest, languages });
     }
 
     onSkillChange(i, value) {
         const { userDetails } = this.state;
         userDetails.skills[i] = value;
+        this.setState({ userDetails });
+    }
+
+    onInterestChange(i, value) {
+        const { userDetails } = this.state;
+        userDetails.interest[i] = value;
         this.setState({ userDetails });
     }
 
@@ -162,7 +178,6 @@ class UserForm extends React.Component {
 
 
     render() {
-        console.log(this.props.userData);
         return (
             <div className="user-form-container">
                 <div>
@@ -179,11 +194,12 @@ class UserForm extends React.Component {
                     addNewEdu={this.addNewEdu}
                     expEduOnchange={this.expEduOnchange}
                     dateChange={this.dateChange}
-                    addNewSkill={this.addNewSkill}
+                    addNewSkillInterestLanguage={this.addNewSkillInterestLanguage}
                     selectDegree={this.selectDegree}
                     onSkillChange={this.onSkillChange}
                     onPreview={this.onPreview}
                     socailOnChange={this.socailOnChange}
+                    onInterestChange={this.onInterestChange}
                     onSave={this.onSave}
                 />
             </div>

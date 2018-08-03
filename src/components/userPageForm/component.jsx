@@ -21,8 +21,9 @@ const userDetailsForm = ({
     addNewEdu,
     dateChange,
     selectDegree,
-    addNewSkill,
+    addNewSkillInterestLanguage,
     onSkillChange,
+    onInterestChange,
     onPreview,
     socailOnChange,
     removePreview,
@@ -333,7 +334,7 @@ const userDetailsForm = ({
                             <Button
                                 outline
                                 color="default"
-                                onClick={addNewSkill}
+                                onClick={() => addNewSkillInterestLanguage(0)}
                             >
                                 Add new skill +
                             </Button>
@@ -341,14 +342,42 @@ const userDetailsForm = ({
                     </div>
                 </div>
                 <div className="col-lg-6">
-                    <Input
-                        label="Interests"
-                        name="interest"
-                        onChange={onChange}
-                        value={userDetails.interest}
-                        type="textarea"
-                        rows="6"
-                    />
+                    <div className="row">
+                        <div className="col-lg-12">
+                            <Headers
+                                type="h4"
+                                klass=""
+                            >
+                            Interests
+                            </Headers>
+                        </div>
+                    </div>
+                    <div className="row">
+                        {
+                            userDetails.interest.map((skill, i) => (
+                                <div className="col-lg-12"  key={i}>
+                                    <Input
+                                        label="Interest"
+                                        name="interest"
+                                        onChange={e => onInterestChange(i, e.target.value)}
+                                        value={userDetails.interest[i]}
+                                        type="text"
+                                    />
+                                </div>
+                            ))
+                        }
+                    </div>
+                    <div className="row">
+                        <div className="col-lg-8 add-new-form">
+                            <Button
+                                outline
+                                color="default"
+                                onClick={() => addNewSkillInterestLanguage(1)}
+                            >
+                                Add new interest +
+                            </Button>
+                        </div>
+                    </div>
                 </div>
             </div>
         }
@@ -402,6 +431,24 @@ const userDetailsForm = ({
                                 value={userDetails.social.instagram}
                             />
                         </div>
+                        <div className="col-lg-6">
+                            <Input
+                                label="Github"
+                                icon="github"
+                                name="gitHub"
+                                onChange={socailOnChange}
+                                value={userDetails.social.gitHub}
+                            />
+                        </div>
+                        <div className="col-lg-6">
+                            <Input
+                                label="Portfolio"
+                                icon="globe"
+                                name="portfolio"
+                                onChange={socailOnChange}
+                                value={userDetails.social.portfolio}
+                            />
+                        </div>
                     </div>
                 </div>
         }
@@ -452,8 +499,9 @@ userDetailsForm.propTypes = {
     addNewEdu : PropTypes.func.isRequired,
     dateChange : PropTypes.func.isRequired,
     selectDegree : PropTypes.func.isRequired,
-    addNewSkill : PropTypes.func.isRequired,
+    addNewSkillInterestLanguage : PropTypes.func.isRequired,
     onSkillChange : PropTypes.func.isRequired,
+    onInterestChange : PropTypes.func.isRequired,
     onPreview : PropTypes.func.isRequired,
     socailOnChange : PropTypes.func.isRequired,
     removePreview : PropTypes.bool,

@@ -1,3 +1,6 @@
+import cloneDeep from 'lodash/cloneDeep';
+
+
 const initialData = {
     data : {
         firstName : '',
@@ -5,12 +8,14 @@ const initialData = {
         experience : [],
         education : [],
         skills : [],
+        interest : [],
+        languages : [],
         social : [],
         defaultTheme : {}
     }
 };
 
-export default (state = initialData, action) => {
+export default (state = cloneDeep(initialData), action) => {
     switch (action.type) {
     case 'SAVE_FOR_PREVIEW':
         return {
@@ -18,15 +23,7 @@ export default (state = initialData, action) => {
         };
     case 'CLEAR_PREVIEW':
         return {
-            data : {
-                firstName : '',
-                lastName : '',
-                experience : [],
-                education : [],
-                skills : [],
-                social : [],
-                defaultTheme : {}
-            }
+            data : initialData
         };
     default:
         return state;
