@@ -24,7 +24,7 @@ class NavbarComponent extends React.Component {
             <Navbar dark expand="md" fixed="top" className="top-nav-bar">
                 <div className="container">
                     <NavbarBrand href="#">
-                        DISIS
+                        DISIS.ME
                     </NavbarBrand>
                     <NavbarToggler onClick={this.toggleNav} className="mr-2" />
                     <Collapse isOpen={this.state.isOpen} navbar>

@@ -84,7 +84,7 @@ const resumeDefault = ({
                                     <p>{exp.jobDescription}</p>
                                 </div>
                                 <div className="resume-date text-md-right">
-                                    <span style={{ color : themeColors.primary }}>{parseMonth(exp.startDate)} - {exp.endDate ? parseMonth(exp.endDate, exp.startDate) : 'present'}</span>
+                                    <span style={{ color : themeColors.primary }}>{parseMonth(exp.startDate)} - {exp.endDate ? parseMonth(exp.endDate) : 'present'}</span>
                                 </div>
                             </div>
                         ))
@@ -105,7 +105,7 @@ const resumeDefault = ({
                                     <div>{edu.program}</div>
                                 </div>
                                 <div className="resume-date text-md-right">
-                                    <span style={{ color : themeColors.primary }}>August 2006 - May 2010</span>
+                                    <span style={{ color : themeColors.primary }}>{parseMonth(edu.startDate)} - {edu.endDate ? parseMonth(edu.endDate) : 'present'}</span>
                                 </div>
                             </div>
                         ))

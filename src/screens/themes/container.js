@@ -9,10 +9,9 @@ import defaultImg from '../../public/imgs/default.jpg';
 const months = [ 'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December' ];
 
-function parseMonth (d, c) {
+function parseMonth (d) {
     const date = new Date(d);
-    const compareDate = c ? new Date(c) : null;
-    return `${months[date.getMonth()]} ${date.getDate()} ${compareDate && date.getFullYear() > compareDate.getFullYear() ? date.getFullYear() : ''}`;
+    return `${months[date.getMonth()]} ${date.getFullYear()}`;
 }
 
 class ThemesContainer extends React.Component {

@@ -47,7 +47,7 @@ const orbitTheme = ({
                             <div key={i} className="item">
                                 <h4 className="degree">{edu.degree} in {edu.program}</h4>
                                 <h5 className="meta">{edu.school}</h5>
-                                <div className="time">{parseMonth(edu.startDate)} - {edu.endDate ? parseMonth(edu.endDate, edu.startDate) : 'present'}</div>
+                                <div className="time">{parseMonth(edu.startDate)} - {edu.endDate ? parseMonth(edu.endDate) : 'present'}</div>
                             </div>
                         ))
                     }
@@ -92,7 +92,7 @@ const orbitTheme = ({
                                     <div className="upper-row">
                                         <h3 className="job-title">{exp.jobTitle}</h3>
                                         <div className="time" style={{ color : themeColors.color3 }}>
-                                            {parseMonth(exp.startDate)} - {exp.endDate ? parseMonth(exp.endDate, exp.startDate) : 'present'}
+                                            {parseMonth(exp.startDate)} - {exp.endDate ? parseMonth(exp.endDate) : 'present'}
                                         </div>
                                     </div>
                                     <div className="company" style={{ color : themeColors.color3 }}>{exp.employer}</div>
