@@ -19,7 +19,10 @@ class Userpage extends React.Component {
     render () {
         console.log(this.props.userData);
         return (
-            <Themes userData={this.props.userData} themeType={this.props.userData.defaultTheme.id || 'default'} />
+            <Themes
+                userData={this.props.userData}
+                profilePic={this.props.userData.image}
+                themeType={this.props.userData.defaultTheme.id || 'default'} />
         );
     }
 }
