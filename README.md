@@ -1,5 +1,4 @@
 # DISISME
-+
 + http://disisme.com
 +
 + Host your web CV on your customizable page in seconds
