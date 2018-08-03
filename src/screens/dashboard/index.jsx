@@ -143,14 +143,15 @@ class Dashboard extends React.Component {
                                 </div>
                                 <div className="user-page-link">
                                     Your url :
-                                    <a href={`${window.location.origin}/${this.props.userData.id}`} target="_blank" rel="noopener noreferrer">
-                                        {`${window.location.origin}/${this.props.userData.id}`}
-                                    </a>
+                                    <input
+                                        value={`${window.location.origin}/${this.props.userData.id}`}
+                                    />
+                                    <div className="link-message">Copy the link to your public profile</div>
                                 </div>
                                 { this.state.modalContent === 'accountDetails' ?
                                     <div>
                                         <div className="picture-upload">
-                                            <label htmlFor="fileUpload">Choose file to upload</label>
+                                            <label htmlFor="fileUpload">Upload your CV photo</label>
                                             <input type="file" name="pic" accept="image/*" id="fileUpload" onChange={this.handleFileUpload} />
                                             <Button
                                                 color="success"

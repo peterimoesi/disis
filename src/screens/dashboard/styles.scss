@@ -60,23 +60,45 @@
     position: relative;
     top: 0px;
     padding: 10px 0;
-    width: 100%;
     left: -15px;
     text-align: center;
     font-size: 15px;
-    color: #f9f9f9;
-    background: rgba(0, 0, 0, 0.5);
-    a {
-        color: #f9f9f9;
+    width: 400px;
+    margin: auto;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    input {
+        border: 0;
+        background: none;
+        padding : 0 5px;
+        flex: 1;
         margin-left : 5px;
+        font-weight: 500;
+    }
+    .link-message {
+        font-style: italic;
+        margin-top: 5px;
+        font-size: 12px;
+        width: 100%;
     }
 }
 .picture-upload {
-    margin: 30px;
-    margin-bottom: 0;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    label {
+        margin-right : 10px;
+    }
+    input {
+        outline: none;
+    }
 }
 .theme-preview-cont {
-    margin-top: 30px;
+    margin-top: 10px;
     .theme-item {
         height : 280px;
         width:  200px;
