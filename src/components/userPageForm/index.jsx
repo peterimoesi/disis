@@ -31,7 +31,7 @@ class UserForm extends React.Component {
                     twitter : '',
                     instagram : '',
                     portfolio : '',
-                    githube : ''
+                    github : ''
                 }
             },
             currentPage : 0

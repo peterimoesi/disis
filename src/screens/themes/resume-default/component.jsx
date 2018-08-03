@@ -61,8 +61,8 @@ const resumeDefault = ({
                                     <li key={key} className="list-inline-item">
                                         <a target="_blank" rel="noopener noreferrer" href={userData.social[key]}>
                                             <span className="fa-stack fa-lg">
-                                                <i className="fa fa-circle fa-stack-2x"></i>
-                                                <i className={`fa fa-${key} fa-stack-1x fa-inverse`}></i>
+                                                <i className="fa fa-circle fa-stack-2x" />
+                                                <i className={`fa fa-${key === 'portfolio' ? 'globe' : key} fa-stack-1x fa-inverse`}></i>
                                             </span>
                                         </a>
                                     </li> : null

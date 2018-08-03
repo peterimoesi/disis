@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input, Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'mdbreact';
+import { Input, Button } from 'mdbreact';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import DatePicker from 'material-ui/DatePicker';
 import PropTypes from 'prop-types';
@@ -228,17 +228,12 @@ const userDetailsForm = ({
                                     />
                                 </div>
                                 <div className="col-lg-6">
-                                    <Dropdown>
-                                        <DropdownToggle caret color="primary">
-                                            {userDetails.education[i].degree || 'Degree'}
-                                        </DropdownToggle>
-                                        <DropdownMenu>
-                                            <DropdownItem onClick={() => selectDegree(i, 'Phd')}>Phd</DropdownItem>
-                                            <DropdownItem onClick={() => selectDegree(i, 'Msc')}>Msc</DropdownItem>
-                                            <DropdownItem onClick={() => selectDegree(i, 'Bsc')}>Bsc</DropdownItem>
-                                            <DropdownItem onClick={() => selectDegree(i, 'Others')}>Others</DropdownItem>
-                                        </DropdownMenu>
-                                    </Dropdown>
+                                    <Input
+                                        label="Degree"
+                                        onChange={e => selectDegree(i, e.target.value)}
+                                        value={userDetails.education[i].degree}
+                                        type="text"
+                                    />
                                 </div>
                             </div>
                             <div className="row">
@@ -435,9 +430,9 @@ const userDetailsForm = ({
                             <Input
                                 label="Github"
                                 icon="github"
-                                name="gitHub"
+                                name="github"
                                 onChange={socailOnChange}
-                                value={userDetails.social.gitHub}
+                                value={userDetails.social.github}
                             />
                         </div>
                         <div className="col-lg-6">
