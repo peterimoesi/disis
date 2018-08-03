@@ -233,10 +233,10 @@ const userDetailsForm = ({
                                             {userDetails.education[i].degree || 'Degree'}
                                         </DropdownToggle>
                                         <DropdownMenu>
-                                            <DropdownItem onClick={e => { e.preventDefault(); selectDegree(i, 'Phd');}}>Phd</DropdownItem>
-                                            <DropdownItem onClick={e => { e.preventDefault(); selectDegree(i, 'Msc');}}>Msc</DropdownItem>
-                                            <DropdownItem onClick={e => { e.preventDefault(); selectDegree(i, 'Bsc');}}>Bsc</DropdownItem>
-                                            <DropdownItem onClick={e => { e.preventDefault(); selectDegree(i, 'Others');}}>Others</DropdownItem>
+                                            <DropdownItem onClick={() => selectDegree(i, 'Phd')}>Phd</DropdownItem>
+                                            <DropdownItem onClick={() => selectDegree(i, 'Msc')}>Msc</DropdownItem>
+                                            <DropdownItem onClick={() => selectDegree(i, 'Bsc')}>Bsc</DropdownItem>
+                                            <DropdownItem onClick={() => selectDegree(i, 'Others')}>Others</DropdownItem>
                                         </DropdownMenu>
                                     </Dropdown>
                                 </div>
