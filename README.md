@@ -1,5 +1,5 @@
 # DISISME
-+ http://disisme.com
++ http://disis.me
 +
 + Host your web CV on your customizable page in seconds
 + Use and share your own custom link with future employers
