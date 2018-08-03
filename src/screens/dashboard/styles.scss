@@ -9,6 +9,9 @@
         z-index: 1;
         top: 0;
         padding-top: 100px;
+        @media screen and (max-width: 768px) {
+            background: rgba(74, 74, 74, 0.71);
+        }
     }
     .sidebar-item {
         color : #f9f9f9;

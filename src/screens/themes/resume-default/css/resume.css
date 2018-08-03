@@ -4,6 +4,10 @@
 .resume-default-cont .navbar-brand {
   height: auto; }
 
+@media screen and (max-width: 992px) {
+  .resume-default-cont .collapse:not(.show) {
+    display: none !important; } }
+
 .resume-default-cont h1,
 .resume-default-cont h2,
 .resume-default-cont h3,

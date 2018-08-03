@@ -5,6 +5,12 @@
   .navbar-brand {
     height: auto;
   }
+  @media screen and (max-width: 992px) {
+    .collapse:not(.show) {
+      display: none !important;
+    }
+  }
+ 
   h1,
   h2,
   h3,

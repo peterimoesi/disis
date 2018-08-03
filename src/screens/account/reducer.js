@@ -1,5 +1,11 @@
 const initialState = {
-    user : {},
+    user : {
+        user : {
+            defaultTheme : {
+                
+            }
+        }
+    },
     isAuthenticated : false
 };
 
