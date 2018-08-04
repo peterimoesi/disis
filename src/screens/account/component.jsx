@@ -14,67 +14,57 @@ const accountComponent = ({ onChange, error, onSubmit, email, password, signup, 
             </div>
             <div className="row">
                 <div className="col-lg-12">
-                    <div className="md-form">
-                        <Input
-                            label="Email"
-                            name="email"
-                            onChange={onChange}
-                            value={email}
-                            type="email"
-                        />
-                    </div>
+                    <Input
+                        label="Email"
+                        name="email"
+                        onChange={onChange}
+                        value={email}
+                        type="email"
+                    />
                 </div>
                 {
                     signup &&
                         <div className="col-lg-6 col-md-12">
-                            <div className="md-form">
-                                <Input
-                                    label="First Name"
-                                    name="firstName"
-                                    onChange={onChange}
-                                    value={firstName}
-                                    type="text"
-                                />
-                            </div>
+                            <Input
+                                label="First Name"
+                                name="firstName"
+                                onChange={onChange}
+                                value={firstName}
+                                type="text"
+                            />
                         </div>
                 }
                 {
                     signup &&
                         <div className="col-lg-6 col-md-12">
-                            <div className="md-form">
-                                <Input
-                                    label="Last name"
-                                    name="lastName"
-                                    onChange={onChange}
-                                    value={lastName}
-                                    type="text"
-                                />
-                            </div>
+                            <Input
+                                label="Last name"
+                                name="lastName"
+                                onChange={onChange}
+                                value={lastName}
+                                type="text"
+                            />
                         </div>
                 }
                 <div className="col-lg-12">
-                    <div className="md-form">
-                        <Input
-                            label="Password"
-                            name="password"
-                            onChange={onChange}
-                            value={password}
-                            type="password"
-                        />
-                    </div>
+                    <Input
+                        label="Password"
+                        name="password"
+                        onChange={onChange}
+                        value={password}
+                        type="password"
+                    />
                 </div>
                 {
                     signup &&
                         <div className="col-lg-12">
-                            <div className="md-form">
-                                <Input
-                                    label="Confirm Password"
-                                    name="confirmPassword"
-                                    onChange={onChange}
-                                    value={confirmPassword}
-                                    type="password"
-                                />
-                            </div>
+                            <Input
+                                label="Confirm Password"
+                                name="confirmPassword"
+                                onChange={onChange}
+                                value={confirmPassword}
+                                type="password"
+                            />
                         </div>
                 }
             </div>

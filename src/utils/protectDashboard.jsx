@@ -14,7 +14,7 @@ export default function protectDashboard(Component) {
         }
         render() {
             return (
-                <Component />
+                <Component {...this.props}/>
             );
         }
     }

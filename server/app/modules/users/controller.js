@@ -2,6 +2,28 @@ import User from './model';
 import { createToken } from './utils/createToken';
 import bcrypt from 'bcrypt';
 
+function returnUser (user, image) {
+    return {
+        id    : user._id,
+        email : user.email,
+        userName : user.userName,
+        firstName : user.firstName,
+        lastName : user.lastName,
+        title : user.title,
+        jobTitle : user.jobTitle,
+        experience : user.experience,
+        education : user.education,
+        social : user.social[0] || {},
+        skills : user.skills,
+        defaultTheme : user.defaultTheme[0] || {},
+        phoneNumber : user.phoneNumber,
+        biography : user.biography,
+        interest : user.interest,
+        languages : user.languages,
+        ...image
+    };
+}
+
 export const userRegister = async (req, res) => {
     const { email, password, firstName, lastName } = req.body;
     if (password.length < 6) {
@@ -12,23 +34,7 @@ export const userRegister = async (req, res) => {
         console.log(user);
         return res.status(200).json({
             success : true,
-            user : {
-                id    : user._id,
-                email : user.email,
-                firstName : user.firstName,
-                lastName : user.lastName,
-                title : user.title,
-                jobTitle : user.jobTitle,
-                experience : user.experience,
-                education : user.education,
-                social : user.social[0] || {},
-                skills : user.skills,
-                defaultTheme : user.defaultTheme[0] || {},
-                phoneNumber : user.phoneNumber,
-                biography : user.biography,
-                interest : user.interest,
-                languages : user.languages,
-            },
+            user : returnUser(user),
             token : `bearer ${createToken(user)}`
         });
     } catch (e) {
@@ -49,23 +55,7 @@ export const userLogin = async (req, res) => {
                     if (result === true) {
                         return res.status(200).json({
                             success : true,
-                            user : {
-                                id    : user._id,
-                                email : user.email,
-                                firstName : user.firstName,
-                                lastName : user.lastName,
-                                title : user.title,
-                                jobTitle : user.jobTitle,
-                                experience : user.experience,
-                                education : user.education,
-                                social : user.social[0] || {},
-                                skills : user.skills,
-                                defaultTheme : user.defaultTheme[0] || {},
-                                phoneNumber : user.phoneNumber,
-                                biography : user.biography,
-                                interest : user.interest,
-                                languages : user.languages
-                            },
+                            user : returnUser(user),
                             token : `bearer ${createToken(user)}`
                         });
                     } else {
@@ -97,23 +87,7 @@ export const userUpdate = async (req, res) => {
                 if (err) { return res.status(401).json({ error: true, errorMessage: 'Cannot update user' }); }
                 return res.status(200).json({
                     success : true,
-                    user : {
-                        id    : updatedUser._id,
-                        email : updatedUser.email,
-                        firstName : updatedUser.firstName,
-                        lastName : updatedUser.lastName,
-                        title : updatedUser.title,
-                        jobTitle : updatedUser.jobTitle,
-                        experience : updatedUser.experience,
-                        education : updatedUser.education,
-                        social : updatedUser.social[0] || {},
-                        skills : updatedUser.skills,
-                        defaultTheme : updatedUser.defaultTheme[0] || {},
-                        phoneNumber : updatedUser.phoneNumber,
-                        biography : updatedUser.biography,
-                        interest : updatedUser.interest,
-                        languages : updatedUser.languages,
-                    },
+                    user : returnUser(updatedUser),
                 });
             });
         });
@@ -125,9 +99,10 @@ export const userUpdate = async (req, res) => {
 };
 
 export const getUserDetails = async (req, res) => {
-    const { userId } = req.params;
+    const { userId, userName } = req.params;
+    console.log(userName);
     try {
-        await User.findById(userId)
+        await User.findOne(userId ? { _id : userId } : { userName })
             .select('email firstName lastName image experience education social interest biography skills defaultTheme phoneNumber')
             .exec(function (err, user) {
                 if (!user) {
@@ -135,25 +110,8 @@ export const getUserDetails = async (req, res) => {
                 }
                 return res.status(201).json({
                     success : true,
-                    user : {
-                        id    : user._id,
-                        email : user.email,
-                        firstName : user.firstName,
-                        lastName : user.lastName,
-                        title : user.title,
-                        jobTitle : user.jobTitle,
-                        experience : user.experience,
-                        education : user.education,
-                        social : user.social[0] || {},
-                        languages : user.languages,
-                        skills : user.skills,
-                        defaultTheme : user.defaultTheme[0] || {},
-                        image : user.image,
-                        phoneNumber : user.phoneNumber,
-                        biography : user.biography,
-                        interest : user.interest,
-                    }
-                }); 
+                    user : returnUser(user, { image : user.image })
+                });
             });
     }
     catch (e) {

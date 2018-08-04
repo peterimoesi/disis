@@ -9,9 +9,10 @@ class Userpage extends React.Component {
     constructor(props) {
         super(props);
         this.id = this.props.match.params.id;
+        this.userName = this.props.match.params.userName;
     }
     componentDidMount() {
-        this.props.getUserDetails(this.id);
+        this.props.getUserDetails(this.id, this.userName);
     }
     componentWillUnmount() {
         this.props.removeUserDetails();

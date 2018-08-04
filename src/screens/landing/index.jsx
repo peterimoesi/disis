@@ -6,8 +6,6 @@ import Navbar from '../../components/nav';
 import landingVideo from '../../public/videos/landing.mp4';
 
 import UserForm from '../../components/userPageForm';
-import Landingbg from './assets/landing.jpg';
-
 
 import './styles.scss';
 

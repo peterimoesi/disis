@@ -13,7 +13,7 @@ export function uploadImg(id, imageString, token) {
 }
 
 export function getUserImage(id) {
-    return dispatch => axios.get(`/api/user/${id}`)
+    return dispatch => axios.get(`/api/user/id/${id}`)
         .then(res => {
             dispatch({
                 type : 'PROFILE_PICTURE_GET'

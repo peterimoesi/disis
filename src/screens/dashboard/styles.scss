@@ -42,6 +42,9 @@
         max-width: 100%;
         margin: auto;
         background: #fff;
+        .user-form-container {
+            margin-right: 30px;
+        }
         .close-cont {
             position: relative;
             height : 30px;
@@ -66,19 +69,24 @@
     left: -15px;
     text-align: center;
     font-size: 15px;
-    width: 400px;
+    width: 600px;
     margin: auto;
     max-width: 100%;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    input, .md-form {
+        flex: 1;
+        margin-left : 5px;
+    }
     input {
         border: 0;
         background: none;
         padding : 0 5px;
-        flex: 1;
-        margin-left : 5px;
         font-weight: 500;
+        &.is-invalid {
+            border-color: rgba(255, 0, 0, 0.774);
+        }
     }
     .link-message {
         font-style: italic;
@@ -119,4 +127,13 @@
             }
         }
     }
+}
+.change-url-form {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    font-weight: 500;
+    margin-right: 10px;
+    flex-wrap: wrap;
 }

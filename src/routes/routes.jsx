@@ -17,7 +17,8 @@ const routes = (
         <Route path="/app/dashboard" component={protectDashboard(Dashboard)} />
         <Route path="/app/login" component={Login} />
         <Route path="/app/signup" component={Signup} />
-        <Route exach path="/:id" component={Userpage} />
+        <Route exach path="/user/:id" component={Userpage} />
+        <Route exach path="/:userName" component={Userpage} />
         <Route path="/" component={Landing} />
     </Switch>
 );

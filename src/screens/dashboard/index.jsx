@@ -2,16 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'mdbreact';
 import PropTypes from 'prop-types';
+
+import Sidebar from './components/sidebar';
+import ThemeSelect from './components/themeSelect';
+import ChangeUrl from './components/changeUrl';
 import Themes from '../themes/container';
 import Userform from '../../components/userPageForm';
 import ColorPicker from '../../components/colorPicker';
-import { removeUserCredentials } from '../../actions/setUserCredentials';
 
+import { removeUserCredentials } from '../../actions/setUserCredentials';
 import { uploadImg, getUserImage } from './action';
 import { updateUser } from '../../components/userPageForm/actions';
-
-import defaultTheme from '../../public/imgs/themes/default.png';
-import orbitTheme from '../../public/imgs/themes/orbit.png';
 
 import './styles.scss';
 
@@ -23,14 +24,20 @@ class Dashboard extends React.Component {
             modalContent : '',
             uploadImage : '',
             waiting : false,
-            profilePic : ''
+            profilePic : '',
+            userName : '',
+            changingUrl : false,
+            changingUrlError : false
         };
-        this.toggle = this.toggle.bind(this);
+        this.onChange = this.onChange.bind(this);
+        this.toggleModal = this.toggleModal.bind(this);
         this.handleKeyDown = this.handleKeyDown.bind(this);
         this.handleFileUpload = this.handleFileUpload.bind(this);
         this.handleThemeColorSave = this.handleThemeColorSave.bind(this);
         this.saveImage = this.saveImage.bind(this);
         this.handleThemeSelect = this.handleThemeSelect.bind(this);
+        this.toggleUrlChange = this.toggleUrlChange.bind(this);
+        this.handleUserNameSave = this.handleUserNameSave.bind(this);
     }
 
     componentDidMount() {
@@ -43,18 +50,26 @@ class Dashboard extends React.Component {
         window.removeEventListener('keydown', this.handleKeyDown);
     }
 
+    onChange(e) {
+        this.setState({ [e.target.name] : e.target.value });
+    }
+
     handleKeyDown(e) {
         if (e.which === 27 && this.state.modal) {
-            this.toggle();
+            this.toggleModal();
         }
     }
 
-    toggle(content) {
+    toggleModal(content) {
         this.setState({
             modal: !this.state.modal,
             modalContent : content,
             userImage : ''
         });
+    }
+
+    toggleUrlChange() {
+        this.setState({ changingUrl : !this.state.changingUrl });
     }
 
     handleFileUpload(e) {
@@ -81,6 +96,15 @@ class Dashboard extends React.Component {
             .then(() => this.setState({ waiting : false, modal : false  }));
     }
 
+    handleUserNameSave() {
+        this.setState({ waiting : true });
+        if (this.state.userName) {
+            this.props.updateUser({ userName : this.state.userName }, this.props.userData.id, this.props.token)
+                .then((res) => res === 200 ? this.setState({ changingUrl : false, waiting : false }) :
+                    this.setState({ changingUrlError : true, waiting : false }));
+        }
+    }
+
     handleThemeSelect(id) {
         this.props.updateUser({ defaultTheme : {
             id : id || 'default',
@@ -98,38 +122,10 @@ class Dashboard extends React.Component {
                     userData={this.props.userData}
                     themeType={this.props.userData.defaultTheme.id}
                 />
-                <div className="sidebar">
-                    <div
-                        className="sidebar-item"
-                        onClick={() => this.toggle('changeTheme')}
-                        role="button"
-                        tabIndex="0"
-                    >
-                        Change theme
-                    </div>
-                    <div
-                        className="sidebar-item"
-                        onClick={() => this.toggle('editTheme')}
-                        role="button"
-                        tabIndex="0"
-                    >
-                        Edit theme
-                    </div>
-                    <div
-                        className="sidebar-item"
-                        onClick={() => this.toggle('accountDetails')}
-                        role="button"
-                        tabIndex="0"
-                    >
-                        Account details
-                    </div>
-                    <div
-                        className="sidebar-item"
-                        onClick={() => this.props.removeUserCredentials()}
-                        role="button"
-                        tabIndex="0"
-                    >logout</div>
-                </div>
+                <Sidebar
+                    removeUserCredentials={this.props.removeUserCredentials}
+                    toggle={this.toggleModal}
+                />
                 {
                     this.state.modal ?
                         <div className="modal-container">
@@ -138,16 +134,20 @@ class Dashboard extends React.Component {
                                     <i className="modal-close fa fa-close"
                                         role="button"
                                         tabIndex="0"
-                                        onClick={this.toggle}
+                                        onClick={this.toggleModal}
                                     />
                                 </div>
-                                <div className="user-page-link">
-                                    Your url :
-                                    <input
-                                        value={`${window.location.origin}/${this.props.userData.id}`}
-                                    />
-                                    <div className="link-message">Copy the link to your public profile</div>
-                                </div>
+                                <ChangeUrl
+                                    onChange={this.onChange}
+                                    userName={this.state.userName}
+                                    defaultUserName={this.props.userData.userName}
+                                    userId={this.props.userData.id}
+                                    changingUrl={this.state.changingUrl}
+                                    toggleUrlChange={this.toggleUrlChange}
+                                    handleUserNameSave={this.handleUserNameSave}
+                                    changingUrlError={this.state.changingUrlError}
+                                    waiting={this.state.waiting}
+                                />
                                 { this.state.modalContent === 'accountDetails' ?
                                     <div>
                                         <div className="picture-upload">
@@ -178,29 +178,7 @@ class Dashboard extends React.Component {
                                     </div> : null
                                 }
                                 { this.state.modalContent === 'changeTheme' ?
-                                    <div className="modal-user-info custom-scrollbar">
-                                        <div className="theme-preview-cont">
-                                            <div className="theme-select">
-                                                <div
-                                                    className="theme-item img-thumbnail"
-                                                    onClick={() => this.handleThemeSelect('default') }
-                                                    tabIndex="0"
-                                                    role="button"
-                                                >
-                                                    <img className="" src={defaultTheme} />
-                                                </div>
-                                                <div
-                                                    className="theme-item img-thumbnail"
-                                                    onClick={() => this.handleThemeSelect('orbit') }
-                                                    tabIndex="0"
-                                                    role="button"
-                                                >
-                                                    <img className="" src={orbitTheme} />
-                                                </div>
-                                            </div>
-                                            <div className="txt-center"style={{ marginTop : '30px' }}>More themes are coming soon...</div>
-                                        </div>
-                                    </div> : null
+                                    <ThemeSelect /> : null
                                 }
                             </div>
                         </div> : null

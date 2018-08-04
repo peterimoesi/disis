@@ -1,11 +1,17 @@
 import mongoose, { Schema } from 'mongoose';
 import bcrypt from 'bcrypt';
+import uniqueValidator from 'mongoose-unique-validator';
 
 const UserSchema = new Schema({
     email : {
         type : String,
         unique : true,
         required : true,
+        trim : true
+    },
+    userName : {
+        type : String,
+        unique : true,
         trim : true
     },
     firstName : {
@@ -43,7 +49,7 @@ const UserSchema = new Schema({
     defaultTheme : {
         type : Array,
         'default' : [{
-            id : '',
+            id : 'default',
             colors : {}
         }]
     },
@@ -65,9 +71,12 @@ const UserSchema = new Schema({
     },
     image : {
         data : Buffer,
-        type : String
+        type : String,
+        default : '',
     }
 }, { timestamps : true, usePushEach: true });
+
+UserSchema.plugin(uniqueValidator);
 
 UserSchema.pre('save', function(next) {
     const user = this;
