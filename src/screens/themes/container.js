@@ -23,6 +23,7 @@ class ThemesContainer extends React.Component {
                 {...this.props}
                 parseMonth={parseMonth}
                 defaultImg={defaultImg}
+                userThemeColors={this.props.userData.defaultTheme.color}
             />;
             break;
         case 'default':
@@ -31,6 +32,7 @@ class ThemesContainer extends React.Component {
                 {...this.props}
                 parseMonth={parseMonth}
                 defaultImg={defaultImg}
+                userThemeColors={this.props.userData.defaultTheme.color}
             />;
             break;
         default:
@@ -53,7 +55,7 @@ function mapStateToProps({ themeColors }) {
 
 ThemesContainer.propTypes = {
     themeType : PropTypes.string,
-    // userData  : PropTypes.object.isRequired
+    userData  : PropTypes.object.isRequired
 };
 
 ThemesContainer.defaultProps = {

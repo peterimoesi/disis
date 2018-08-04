@@ -19,7 +19,7 @@ const themeSelect = ({ handleThemeSelect  }) => (
                 </div>
                 <div
                     className="theme-item img-thumbnail"
-                    onClick={() => this.handleThemeSelect('orbit') }
+                    onClick={() => handleThemeSelect('orbit') }
                     tabIndex="0"
                     role="button"
                 >

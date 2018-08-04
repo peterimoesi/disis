@@ -18,12 +18,12 @@ class Userpage extends React.Component {
         this.props.removeUserDetails();
     }
     render () {
-        console.log(this.props.userData);
         return (
             <Themes
                 userData={this.props.userData}
                 profilePic={this.props.userData.image}
-                themeType={this.props.userData.defaultTheme.id || 'default'} />
+                themeType={this.props.userData.defaultTheme.id}
+            />
         );
     }
 }

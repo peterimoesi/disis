@@ -22,6 +22,14 @@ class OrbitTheme extends React.Component {
         });
     }
 
+    UNSAFE_componentWillReceiveProps(nextProps) {
+        console.log(nextProps);
+        if (isEmpty(this.props.userThemeColors) && !isEmpty(nextProps.userThemeColors)) {
+            console.log('not empty');
+            this.props.addColors(nextProps.userThemeColors);
+        }
+    }
+
     componentWillUnmount() {
     }
 
@@ -30,6 +38,7 @@ class OrbitTheme extends React.Component {
     }
 
     render() {
+        // console.log(this.props);
         return (
             <div>
                 <Component
@@ -48,11 +57,11 @@ OrbitTheme.propTypes = {
     userThemeColors : PropTypes.object.isRequired
 };
 
-function mapStateToProps({ userAuthentication }) {
-    return {
-        userThemeColors : userAuthentication.isAuthenticated ? userAuthentication.user.user.defaultTheme.color : {}
-    };
-}
+// function mapStateToProps({ userAuthentication }) {
+//     return {
+//         userThemeColors : userAuthentication.isAuthenticated ? userAuthentication.user.user.defaultTheme.color : {}
+//     };
+// }
 
-export default connect(mapStateToProps, { addColors })(OrbitTheme);
+export default connect(null, { addColors })(OrbitTheme);
 

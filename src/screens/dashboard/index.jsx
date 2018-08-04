@@ -178,7 +178,9 @@ class Dashboard extends React.Component {
                                     </div> : null
                                 }
                                 { this.state.modalContent === 'changeTheme' ?
-                                    <ThemeSelect /> : null
+                                    <ThemeSelect
+                                        handleThemeSelect={this.handleThemeSelect}
+                                    /> : null
                                 }
                             </div>
                         </div> : null

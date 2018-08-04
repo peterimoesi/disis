@@ -23,6 +23,13 @@ class DefaultTheme extends React.Component {
         });
     }
 
+    UNSAFE_componentWillReceiveProps(nextProps) {
+        console.log(this.props.userThemeColors);
+        if (isEmpty(this.props.userThemeColors) && !isEmpty(nextProps.userThemeColors)) {
+            this.props.addColors(nextProps.userThemeColors);
+        }
+    }
+
     componentWillUnmount() {
         document.querySelector('body').removeAttribute('id');
     }
@@ -38,7 +45,6 @@ class DefaultTheme extends React.Component {
                     {...this.props}
                     isOpen={this.state.isOpen}
                     toggleNav={this.toggleNav}
-                    currentColors={this.state.currentColors}
                 />
             </div>
         );
@@ -50,11 +56,11 @@ DefaultTheme.propTypes = {
     userThemeColors : PropTypes.object.isRequired
 };
 
-function mapStateToProps({ userAuthentication }) {
-    return {
-        userThemeColors : userAuthentication.isAuthenticated ? userAuthentication.user.user.defaultTheme.color : {}
-    };
-}
+// function mapStateToProps({ userAuthentication }) {
+//     return {
+//         userThemeColors : userAuthentication.isAuthenticated ? userAuthentication.user.user.defaultTheme.color : {}
+//     };
+// }
 
-export default connect(mapStateToProps, { addColors })(DefaultTheme);
+export default connect(null, { addColors })(DefaultTheme);
 
