@@ -6,6 +6,7 @@ import Navbar from '../../components/nav';
 import landingVideo from '../../public/videos/landing.mp4';
 
 import UserForm from '../../components/userPageForm';
+import Landingbg from './assets/landing.jpg';
 
 
 import './styles.scss';
@@ -66,8 +67,11 @@ class Landing extends React.Component {
                         </ul>
                     </div>
                 </div>
-                <div className="container" id="user-form">
-                    <UserForm {...this.props} />
+                <div id="user-form">
+                    <div className="landing-bg-overlay" />
+                    <div className="container">
+                        <UserForm {...this.props} />
+                    </div>
                 </div>
                 <div className="footer-cont">
                     <div className="container">

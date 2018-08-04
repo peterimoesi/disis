@@ -31,6 +31,23 @@
     }
     #user-form {
         flex-grow: 1;
+        background-image: url('./assets/landing.jpg');
+        position: relative;
+        display: flex;
+        & > .landing-bg-overlay {
+            background: rgba(0, 0, 0, 0.77);
+            position: absolute;
+            top : 0;
+            left : 0;
+            right : 0;
+            bottom : 0;
+            background-color: rgba(255, 255, 255, 0.71);
+        }
+        & > .container {
+            background-color: #fff;
+            flex: 1;
+            z-index: 1;
+        }
     }
     .button-no-border {
         border : 0;

@@ -28,7 +28,22 @@
     .home-landing {
       min-height: 100vh; } }
   .home-landing #user-form {
-    flex-grow: 1; }
+    flex-grow: 1;
+    background-image: url("./assets/landing.jpg");
+    position: relative;
+    display: flex; }
+    .home-landing #user-form > .landing-bg-overlay {
+      background: rgba(0, 0, 0, 0.77);
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(255, 255, 255, 0.71); }
+    .home-landing #user-form > .container {
+      background-color: #fff;
+      flex: 1;
+      z-index: 1; }
   .home-landing .button-no-border {
     border: 0; }
     .home-landing .button-no-border:hover, .home-landing .button-no-border:visited, .home-landing .button-no-border:active, .home-landing .button-no-border:focus {
