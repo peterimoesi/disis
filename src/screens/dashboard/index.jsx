@@ -97,8 +97,8 @@ class Dashboard extends React.Component {
     }
 
     handleUserNameSave() {
-        this.setState({ waiting : true });
         if (this.state.userName) {
+            this.setState({ waiting : true });
             this.props.updateUser({ userName : this.state.userName }, this.props.userData.id, this.props.token)
                 .then((res) => res === 200 ? this.setState({ changingUrl : false, waiting : false }) :
                     this.setState({ changingUrlError : true, waiting : false }));
@@ -115,6 +115,7 @@ class Dashboard extends React.Component {
     }
 
     render() {
+        console.log(this.state.waiting);
         return (
             <div className="dashboard-cont">
                 <Themes
