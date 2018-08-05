@@ -25,6 +25,10 @@ class UserForm extends React.Component {
                 interest : [],
                 skills : [],
                 languages : [],
+                portfolio : [],
+                defaultTheme : {
+                    color : {}
+                },
                 social : {
                     linkedin : '',
                     facebook : '',
@@ -34,14 +38,14 @@ class UserForm extends React.Component {
                     github : ''
                 }
             },
-            currentPage : 0
+            currentPage : 4
         };
         this.onChange = this.onChange.bind(this);
         this.nextPage = this.nextPage.bind(this);
         this.prevPage = this.prevPage.bind(this);
         this.addNewExp = this.addNewExp.bind(this);
         this.addNewEdu = this.addNewEdu.bind(this);
-        this.expEduOnchange = this.expEduOnchange.bind(this);
+        this.expEduPortOnchange = this.expEduPortOnchange.bind(this);
         this.selectDegree = this.selectDegree.bind(this);
         this.dateChange = this.dateChange.bind(this);
         this.addNewSkillInterestLanguage = this.addNewSkillInterestLanguage.bind(this);
@@ -50,6 +54,7 @@ class UserForm extends React.Component {
         this.onPreview = this.onPreview.bind(this);
         this.socailOnChange = this.socailOnChange.bind(this);
         this.onSave = this.onSave.bind(this);
+        this.addNewPortfolio = this.addNewPortfolio.bind(this);
     }
 
     componentDidMount() {
@@ -98,6 +103,18 @@ class UserForm extends React.Component {
         this.setState({ education });
     }
 
+    addNewPortfolio() {
+        const { portfolio } = this.state.userDetails;
+        console.log(portfolio);
+        portfolio.push({
+            title : '',
+            description : '',
+            url : '',
+            thumbnail : ''
+        });
+        this.setState({ portfolio });
+    }
+
     addNewSkillInterestLanguage(value) {
         const { skills, interest, languages } = this.state.userDetails;
         if (value === 0) {
@@ -122,13 +139,21 @@ class UserForm extends React.Component {
         this.setState({ userDetails });
     }
 
-    expEduOnchange(e, name, i) {
+    expEduPortOnchange(e, name, i) {
         const { userDetails } = this.state; 
         const current = userDetails[name];
         const currentObject = current[i];
         currentObject[e.target.name] = e.target.value;
         this.setState({ userDetails });
     }
+
+    // onPortfolioChange(e, name, i) {
+    //     const { userDetails } = this.state; 
+    //     const current = userDetails[name];
+    //     const currentObject = current[i];
+    //     currentObject[e.target.name] = e.target.value;
+    //     this.setState({ userDetails });
+    // }
 
     selectDegree(i, value) {
         const { userDetails } = this.state;
@@ -192,7 +217,7 @@ class UserForm extends React.Component {
                     currentPage={this.state.currentPage}
                     addNewExp={this.addNewExp}
                     addNewEdu={this.addNewEdu}
-                    expEduOnchange={this.expEduOnchange}
+                    expEduPortOnchange={this.expEduPortOnchange}
                     dateChange={this.dateChange}
                     addNewSkillInterestLanguage={this.addNewSkillInterestLanguage}
                     selectDegree={this.selectDegree}
@@ -201,6 +226,7 @@ class UserForm extends React.Component {
                     socailOnChange={this.socailOnChange}
                     onInterestChange={this.onInterestChange}
                     onSave={this.onSave}
+                    addNewPortfolio={this.addNewPortfolio}
                 />
             </div>
         );

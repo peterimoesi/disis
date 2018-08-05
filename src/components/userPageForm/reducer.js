@@ -11,7 +11,10 @@ const initialData = {
         interest : [],
         languages : [],
         social : [],
-        defaultTheme : {}
+        portfolio : [],
+        defaultTheme : {
+            color : {}
+        }
     }
 };
 

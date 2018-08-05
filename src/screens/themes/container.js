@@ -36,7 +36,13 @@ class ThemesContainer extends React.Component {
             />;
             break;
         default:
-            theme = null;
+            theme = 
+            <DefaultTheme
+                {...this.props}
+                parseMonth={parseMonth}
+                defaultImg={defaultImg}
+                userThemeColors={this.props.userData.defaultTheme.color}
+            />;
             break;
         }
         return (

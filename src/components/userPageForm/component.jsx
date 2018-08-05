@@ -16,7 +16,7 @@ const userDetailsForm = ({
     nextPage,
     prevPage,
     currentPage,
-    expEduOnchange,
+    expEduPortOnchange,
     addNewExp,
     addNewEdu,
     dateChange,
@@ -29,7 +29,8 @@ const userDetailsForm = ({
     removePreview,
     showSave,
     onSave,
-    isAuthenticated
+    isAuthenticated,
+    // addNewPortfolio
 }) => (
     <div>
         { currentPage === 0 &&
@@ -115,7 +116,7 @@ const userDetailsForm = ({
                                     <Input
                                         label="Employer"
                                         name="employer"
-                                        onChange={e => expEduOnchange(e, 'experience', i)}
+                                        onChange={e => expEduPortOnchange(e, 'experience', i)}
                                         value={userDetails.experience[i].employer}
                                         type="text"
                                     />
@@ -124,7 +125,7 @@ const userDetailsForm = ({
                                     <Input
                                         label="Job Title"
                                         name="jobTitle"
-                                        onChange={e => expEduOnchange(e, 'experience', i)}
+                                        onChange={e => expEduPortOnchange(e, 'experience', i)}
                                         value={userDetails.experience[i].jobTitle}
                                         type="text"
                                     />
@@ -166,7 +167,7 @@ const userDetailsForm = ({
                                     <Input
                                         label="Job Descripton"
                                         name="jobDescription"
-                                        onChange={e => expEduOnchange(e, 'experience', i)}
+                                        onChange={e => expEduPortOnchange(e, 'experience', i)}
                                         value={userDetails.experience[i].jobDescription}
                                         type="textarea"
                                         rows="5"
@@ -211,7 +212,7 @@ const userDetailsForm = ({
                                     <Input
                                         label="School"
                                         name="school"
-                                        onChange={e => expEduOnchange(e, 'education', i)}
+                                        onChange={e => expEduPortOnchange(e, 'education', i)}
                                         value={userDetails.education[i].school}
                                         type="text"
                                     />
@@ -222,7 +223,7 @@ const userDetailsForm = ({
                                     <Input
                                         label="Program"
                                         name="program"
-                                        onChange={e => expEduOnchange(e, 'education', i)}
+                                        onChange={e => expEduPortOnchange(e, 'education', i)}
                                         value={userDetails.education[i].program}
                                         type="text"
                                     />
@@ -272,7 +273,7 @@ const userDetailsForm = ({
                                     <Input
                                         label="Descripton"
                                         name="schoolDescription"
-                                        onChange={e => expEduOnchange(e, 'education', i)}
+                                        onChange={e => expEduPortOnchange(e, 'education', i)}
                                         value={userDetails.education[i].schoolDescription}
                                         type="textarea"
                                         rows="5"
@@ -376,8 +377,91 @@ const userDetailsForm = ({
                 </div>
             </div>
         }
+        {/********************************************************** Portfolio ***** *************************************/}
+        {/* { currentPage === 4 &&
+            <div>
+                <div className="row">
+                    <div className="col-lg-6">
+                        <Headers
+                            type="h4"
+                            klass=""
+                        >
+                        Portfolio
+                        </Headers>
+                    </div>
+                </div>
+                {
+                    userDetails.portfolio.map((exp, i) => (
+                        <div key={i}>
+                            <div className="row">
+                                <div className="col-lg-6">
+                                    <Input
+                                        label="Title"
+                                        name="title"
+                                        onChange={e => expEduPortOnchange(e, 'portfolio', i)}
+                                        value={userDetails.portfolio[i].title}
+                                        type="text"
+                                    />
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-lg-6">
+                                    <Input
+                                        label="Project Url"
+                                        name="url"
+                                        onChange={e => expEduPortOnchange(e, 'portfolio', i)}
+                                        value={userDetails.portfolio[i].url}
+                                        type="text"
+                                    />
+                                </div>
+                                <div className="col-lg-6">
+                                    <label htmlFor="fileUpload">Upload your CV photo</label>
+                                    <input
+                                        type="file"
+                                        name="pic"
+                                        accept="image/*"
+                                        id="fileUpload"
+                                        // onChange={handleFileUpload}
+                                    />
+                                    <Button
+                                        color="success"
+                                        // disabled={this.state.waiting}
+                                        // onClick={!this.state.waiting && this.saveImage}
+                                    >
+                                                    Save
+                                    </Button>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-lg-12">
+                                    <Input
+                                        label="Descripton"
+                                        name="description"
+                                        onChange={e => expEduPortOnchange(e, 'portfolio', i)}
+                                        value={userDetails.portfolio[i].description}
+                                        type="textarea"
+                                        rows="5"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    ))
+                }
+                <div className="row">
+                    <div className="col-lg-8 add-new-form">
+                        <Button
+                            outline
+                            color="default"
+                            onClick={addNewPortfolio}
+                        >
+                            Add new +
+                        </Button>
+                    </div>
+                </div>
+            </div>
+        } */}
         {/********************************************************** Skills ***** *************************************/}
-        { currentPage === 4 &&
+        { currentPage === 5 &&
                 <div>
                     <div className="row">
                         <div className="col-lg-12">
@@ -462,8 +546,8 @@ const userDetailsForm = ({
                 <Button
                     outline
                     color="primary"
-                    onClick={currentPage < 4 ? nextPage : null}
-                    disabled={currentPage >= 4}
+                    onClick={currentPage < 5 ? nextPage : null}
+                    disabled={currentPage >= 5}
                 >
                     Next
                 </Button>
@@ -489,7 +573,7 @@ userDetailsForm.propTypes = {
     prevPage : PropTypes.func.isRequired,
     nextPage : PropTypes.func.isRequired,
     currentPage : PropTypes.number.isRequired,
-    expEduOnchange : PropTypes.func.isRequired,
+    expEduPortOnchange : PropTypes.func.isRequired,
     addNewExp : PropTypes.func.isRequired,
     addNewEdu : PropTypes.func.isRequired,
     dateChange : PropTypes.func.isRequired,
@@ -502,7 +586,8 @@ userDetailsForm.propTypes = {
     removePreview : PropTypes.bool,
     showSave : PropTypes.bool,
     onSave : PropTypes.func.isRequired,
-    isAuthenticated : PropTypes.bool.isRequired
+    isAuthenticated : PropTypes.bool.isRequired,
+    // addNewPortfolio : PropTypes.func.isRequired
 };
 
 userDetailsForm.defaultProps = {

@@ -73,6 +73,10 @@ const UserSchema = new Schema({
         data : Buffer,
         type : String,
         default : '',
+    },
+    portfolio : {
+        type : Array,
+        'default' : []
     }
 }, { timestamps : true, usePushEach: true });
 
