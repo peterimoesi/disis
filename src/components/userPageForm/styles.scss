@@ -15,4 +15,27 @@
         font-size: 1rem !important;
         font-weight: 400 !important;
     }
+    .profile-data {
+        position : relative;
+        .close-data {
+            z-index: 1;
+            position: absolute;
+            top : 0;
+            right : 0;
+            font-size: 28px;
+            outline: none;
+            color : #9b9b9b;
+            &:hover {
+                color : red;
+            }
+        }
+        &.profile-data-light-input {
+            .close-data {
+                top : 50%;
+                right : 15px;
+                transform: translateY(-50%);
+                font-size: 20px;
+            }
+        }
+    }
 }

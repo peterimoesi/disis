@@ -13,6 +13,7 @@ function returnUser (user, image) {
         jobTitle : user.jobTitle,
         experience : user.experience,
         education : user.education,
+        portfolio : user.portfolio,
         social : user.social[0] || {},
         skills : user.skills,
         defaultTheme : user.defaultTheme[0] || {},

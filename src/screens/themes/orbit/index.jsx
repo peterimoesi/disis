@@ -23,7 +23,6 @@ class OrbitTheme extends React.Component {
     }
 
     UNSAFE_componentWillReceiveProps(nextProps) {
-        console.log(nextProps);
         if (isEmpty(this.props.userThemeColors) && !isEmpty(nextProps.userThemeColors)) {
             console.log('not empty');
             this.props.addColors(nextProps.userThemeColors);

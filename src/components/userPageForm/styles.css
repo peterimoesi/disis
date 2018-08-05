@@ -11,3 +11,20 @@
     color: rgba(117, 117, 117, 0.909804) !important;
     font-size: 1rem !important;
     font-weight: 400 !important; }
+  .user-form-container .profile-data {
+    position: relative; }
+    .user-form-container .profile-data .close-data {
+      z-index: 1;
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 28px;
+      outline: none;
+      color: #9b9b9b; }
+      .user-form-container .profile-data .close-data:hover {
+        color: red; }
+    .user-form-container .profile-data.profile-data-light-input .close-data {
+      top: 50%;
+      right: 15px;
+      transform: translateY(-50%);
+      font-size: 20px; }

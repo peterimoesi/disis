@@ -8,8 +8,7 @@ import './assets/css/orbit-1.scss';
 const orbitTheme = ({
     userData,
     defaultImg,
-    // toggleNav,
-    // isOpen,
+    // parseUrl,
     themeColors,
     profilePic,
     parseMonth
@@ -104,29 +103,23 @@ const orbitTheme = ({
                 
                 </section>
             
-                {/* <section className="section projects-section">
-                    <h2 className="section-title"><span className="icon-holder"><i className="fas fa-archive"></i></span>Projects</h2>
-                    <div className="intro">
-                        <p>You can list your side projects or open source libraries in this section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et ligula in nunc bibendum fringilla a eu lectus.</p>
-                    </div>
-                    <div className="item">
-                        <span className="project-title"><a href="#hook">Velocity</a></span> - <span className="project-tagline">A responsive website template designed to help startups promote, market and sell their products.</span>
-                    
-                    </div>
-                    <div className="item">
-                        <span className="project-title"><a href="http://themes.3rdwavemedia.com/website-templates/responsive-bootstrap-theme-web-development-agencies-devstudio/" target="_blank">DevStudio</a></span> - 
-                        <span className="project-tagline">A responsive website template designed to help web developers/designers market their services. </span>
-                    </div>
-                    <div className="item">
-                        <span className="project-title"><a href="http://themes.3rdwavemedia.com/website-templates/responsive-bootstrap-theme-for-startups-tempo/" target="_blank">Tempo</a></span> - <span className="project-tagline">A responsive website template designed to help startups promote their products or services and to attract users &amp; investors</span>
-                    </div>
-                    <div className="item">
-                        <span className="project-title"><a href="hhttp://themes.3rdwavemedia.com/website-templates/responsive-bootstrap-theme-mobile-apps-atom/" target="_blank">Atom</a></span> - <span className="project-tagline">A comprehensive website template solution for startups/developers to market their mobile apps. </span>
-                    </div>
-                    <div className="item">
-                        <span className="project-title"><a href="http://themes.3rdwavemedia.com/website-templates/responsive-bootstrap-theme-for-mobile-apps-delta/" target="_blank">Delta</a></span> - <span className="project-tagline">A responsive Bootstrap one page theme designed to help app developers promote their mobile apps</span>
-                    </div>
-                </section> */}
+                {userData.portfolio.length ?
+                    <section className="section projects-section">
+                        <h2 className="section-title"><span className="icon-holder"><i className="fa fa-archive"></i></span>Projects</h2>
+                        {/* <div className="intro">
+                            <p>You can list your side projects or open source libraries in this section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et ligula in nunc bibendum fringilla a eu lectus.</p>
+                        </div> */}
+                        {
+                            userData.portfolio.map((item, i) => (
+                                <div className="item" key={i}>
+                                    <span className="project-title"><a href={item.url} style={{ color : themeColors.color2 }} target="_blank" rel="noreferrer noopener">{item.title}</a></span> - 
+                                    <span className="project-tagline">{item.description}</span>
+                                    {/* { parseUrl(item.url) ? <div><img className="img img-thumbnail" src={parseUrl(item.url)} alt="preview" /></div> : null } */}
+                                </div>
+                            ))
+                        }
+                    </section> : null
+                }
             
                 <section className="skills-section section">
                     <h2 className="section-title"  style={{ color : themeColors.color2 }}>
@@ -165,7 +158,8 @@ orbitTheme.propTypes = {
     defaultImg : PropTypes.string.isRequired,
     themeColors : PropTypes.object.isRequired,
     profilePic : PropTypes.string.isRequired,
-    parseMonth : PropTypes.func.isRequired
+    parseMonth : PropTypes.func.isRequired,
+    // parseUrl : PropTypes.func.isRequired
 };
 
 export default orbitTheme;

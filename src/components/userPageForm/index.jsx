@@ -38,7 +38,7 @@ class UserForm extends React.Component {
                     github : ''
                 }
             },
-            currentPage : 4
+            currentPage : 0
         };
         this.onChange = this.onChange.bind(this);
         this.nextPage = this.nextPage.bind(this);
@@ -55,6 +55,7 @@ class UserForm extends React.Component {
         this.socailOnChange = this.socailOnChange.bind(this);
         this.onSave = this.onSave.bind(this);
         this.addNewPortfolio = this.addNewPortfolio.bind(this);
+        this.onDeleteData = this.onDeleteData.bind(this);
     }
 
     componentDidMount() {
@@ -147,14 +148,6 @@ class UserForm extends React.Component {
         this.setState({ userDetails });
     }
 
-    // onPortfolioChange(e, name, i) {
-    //     const { userDetails } = this.state; 
-    //     const current = userDetails[name];
-    //     const currentObject = current[i];
-    //     currentObject[e.target.name] = e.target.value;
-    //     this.setState({ userDetails });
-    // }
-
     selectDegree(i, value) {
         const { userDetails } = this.state;
         const currentObject = userDetails.education[i];
@@ -173,6 +166,13 @@ class UserForm extends React.Component {
     onPreview() {
         this.props.saveForPreview(this.state.userDetails);
         this.props.history.push('/app/preview/demo');
+    }
+
+    onDeleteData(name, i) {
+        const { userDetails } = this.state;
+        const current = userDetails[name];
+        current.splice(i, 1);
+        this.setState({ userDetails });
     }
 
     onSave() {
@@ -227,6 +227,7 @@ class UserForm extends React.Component {
                     onInterestChange={this.onInterestChange}
                     onSave={this.onSave}
                     addNewPortfolio={this.addNewPortfolio}
+                    onDeleteData={this.onDeleteData}
                 />
             </div>
         );

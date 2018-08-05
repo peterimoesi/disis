@@ -4,7 +4,7 @@ import { Input, Button } from 'mdbreact';
 
 import './styles.scss';
 
-const accountComponent = ({ onChange, error, onSubmit, email, password, signup, confirmPassword, firstName, lastName }) => (
+const accountComponent = ({ onChange, error, onSubmit, email, password, signup, confirmPassword, firstName, lastName, waiting }) => (
     <div className="container">
         <div className="account-form-cont">
             <div className="row">
@@ -73,7 +73,7 @@ const accountComponent = ({ onChange, error, onSubmit, email, password, signup, 
                     <Button
                         color="success"
                         onClick={onSubmit}
-                        disabled={!email || !password ? true : false}
+                        disabled={!email || !password || waiting ? true : false}
                     >Submit</Button>
                 </div>
             </div>
@@ -90,7 +90,8 @@ accountComponent.propTypes = {
     firstName : PropTypes.string,
     lastName : PropTypes.string,
     signup : PropTypes.bool,
-    password : PropTypes.string.isRequired
+    password : PropTypes.string.isRequired,
+    waiting : PropTypes.bool
 };
 
 accountComponent.defaultProps = {
@@ -98,7 +99,8 @@ accountComponent.defaultProps = {
     firstName : null,
     lastName : null,
     signup : null,
-    error           : null
+    error           : null,
+    waiting : false
 };
 
 export default accountComponent;

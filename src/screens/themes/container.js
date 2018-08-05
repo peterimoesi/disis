@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+// import LinkPreview from 'react-native-link-preview';
 
 import DefaultTheme from './resume-default';
 import OrbitTheme from './orbit';
-import defaultImg from '../../public/imgs/default.jpg';
+import defaultImg from '../../public/imgs/default.png';
 
 const months = [ 'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December' ];
@@ -13,6 +14,21 @@ function parseMonth (d) {
     const date = new Date(d);
     return `${months[date.getMonth()]} ${date.getFullYear()}`;
 }
+
+// const previewLink = async (url) => {
+//     try {
+//         const res = await LinkPreview.getPreview(url);
+//         return res;
+//     }
+//     catch (e) {
+//         console.error(e);
+//         return '';
+//     }
+// };
+
+// function parseUrl(url) {
+//     previewLink(url).then(res => res);
+// }
 
 class ThemesContainer extends React.Component {
     render() {

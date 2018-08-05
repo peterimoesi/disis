@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import { userRegister } from './action';
 import AccountComponent from '../component';
+import validateEmail from '../../../utils/validateEmail';
 
 class Signup extends React.Component {
     constructor() {
@@ -14,6 +15,7 @@ class Signup extends React.Component {
             firstName : '',
             lastName : '',
             confirmPassword : '',
+            waiting : false
         };
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -44,10 +46,15 @@ class Signup extends React.Component {
             this.setState({ error : 'Your names are required' });
             return;
         }
+        if (!validateEmail(this.state.email)) {
+            this.setState({ error : 'Please enter a valid email' });
+            return;
+        }
+        this.setState({ waiting : true });
         this.props.userRegister({email, password, firstName, lastName})
             .then((e) => {
                 if (e === 500) {
-                    this.setState({ error : 'Invalid Authentication' });
+                    this.setState({ error : 'Invalid Authentication', waiting : false });
                 } else {
                     if (state && state.from) {
                         this.props.history.push(state.from);
@@ -69,6 +76,7 @@ class Signup extends React.Component {
                 onSubmit={this.onSubmit}
                 firstName={this.state.firstName}
                 lastName={this.state.lastName}
+                waiting={this.state.waiting}
                 signup
             />
         );

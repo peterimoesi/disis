@@ -30,7 +30,8 @@ const userDetailsForm = ({
     showSave,
     onSave,
     isAuthenticated,
-    // addNewPortfolio
+    addNewPortfolio,
+    onDeleteData
 }) => (
     <div>
         { currentPage === 0 &&
@@ -110,7 +111,15 @@ const userDetailsForm = ({
                 </div>
                 {
                     userDetails.experience.map((exp, i) => (
-                        <div key={i}>
+                        <div key={i} className="profile-data">
+                            <div
+                                className="close-data"
+                                onClick={() => onDeleteData('experience', i)}
+                                role="button"
+                                tabIndex="0"
+                            >
+                                <i className="fa fa-times" />
+                            </div>
                             <div className="row">
                                 <div className="col-lg-6">
                                     <Input
@@ -205,8 +214,15 @@ const userDetailsForm = ({
                 </div>
                 {
                     userDetails.education.map((exp, i) => (
-                        <div key={i}>
-                            {/* { i > 0 && <hr />} */}
+                        <div key={i} className="profile-data">
+                            <div
+                                className="close-data"
+                                onClick={() => onDeleteData('education', i)}
+                                role="button"
+                                tabIndex="0"
+                            >
+                                <i className="fa fa-times" />
+                            </div>
                             <div className="row">
                                 <div className="col-lg-12">
                                     <Input
@@ -313,7 +329,15 @@ const userDetailsForm = ({
                     <div className="row">
                         {
                             userDetails.skills.map((skill, i) => (
-                                <div className="col-lg-12"  key={i}>
+                                <div className="col-lg-12 profile-data profile-data-light-input"  key={i}>
+                                    <div
+                                        className="close-data"
+                                        onClick={() => onDeleteData('skills', i)}
+                                        role="button"
+                                        tabIndex="0"
+                                    >
+                                        <i className="fa fa-times" />
+                                    </div>
                                     <Input
                                         label="Skill"
                                         name="skill"
@@ -351,7 +375,15 @@ const userDetailsForm = ({
                     <div className="row">
                         {
                             userDetails.interest.map((skill, i) => (
-                                <div className="col-lg-12"  key={i}>
+                                <div className="col-lg-12 profile-data profile-data-light-input"  key={i}>
+                                    <div
+                                        className="close-data"
+                                        onClick={() => onDeleteData('interest', i)}
+                                        role="button"
+                                        tabIndex="0"
+                                    >
+                                        <i className="fa fa-times" />
+                                    </div>
                                     <Input
                                         label="Interest"
                                         name="interest"
@@ -378,7 +410,7 @@ const userDetailsForm = ({
             </div>
         }
         {/********************************************************** Portfolio ***** *************************************/}
-        {/* { currentPage === 4 &&
+        { currentPage === 4 &&
             <div>
                 <div className="row">
                     <div className="col-lg-6">
@@ -392,7 +424,15 @@ const userDetailsForm = ({
                 </div>
                 {
                     userDetails.portfolio.map((exp, i) => (
-                        <div key={i}>
+                        <div key={i} className="profile-data">
+                            <div
+                                className="close-data"
+                                onClick={() => onDeleteData('portfolio', i)}
+                                role="button"
+                                tabIndex="0"
+                            >
+                                <i className="fa fa-times" />
+                            </div>
                             <div className="row">
                                 <div className="col-lg-6">
                                     <Input
@@ -414,7 +454,7 @@ const userDetailsForm = ({
                                         type="text"
                                     />
                                 </div>
-                                <div className="col-lg-6">
+                                {/* <div className="col-lg-6">
                                     <label htmlFor="fileUpload">Upload your CV photo</label>
                                     <input
                                         type="file"
@@ -430,7 +470,7 @@ const userDetailsForm = ({
                                     >
                                                     Save
                                     </Button>
-                                </div>
+                                </div> */}
                             </div>
                             <div className="row">
                                 <div className="col-lg-12">
@@ -459,7 +499,7 @@ const userDetailsForm = ({
                     </div>
                 </div>
             </div>
-        } */}
+        }
         {/********************************************************** Skills ***** *************************************/}
         { currentPage === 5 &&
                 <div>
@@ -587,7 +627,8 @@ userDetailsForm.propTypes = {
     showSave : PropTypes.bool,
     onSave : PropTypes.func.isRequired,
     isAuthenticated : PropTypes.bool.isRequired,
-    // addNewPortfolio : PropTypes.func.isRequired
+    addNewPortfolio : PropTypes.func.isRequired,
+    onDeleteData : PropTypes.func.isRequired
 };
 
 userDetailsForm.defaultProps = {

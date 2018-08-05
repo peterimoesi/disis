@@ -24,7 +24,6 @@ class DefaultTheme extends React.Component {
     }
 
     UNSAFE_componentWillReceiveProps(nextProps) {
-        console.log(this.props.userThemeColors);
         if (isEmpty(this.props.userThemeColors) && !isEmpty(nextProps.userThemeColors)) {
             this.props.addColors(nextProps.userThemeColors);
         }

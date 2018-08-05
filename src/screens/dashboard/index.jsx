@@ -115,7 +115,6 @@ class Dashboard extends React.Component {
     }
 
     render() {
-        console.log(this.state.waiting);
         return (
             <div className="dashboard-cont">
                 <Themes
@@ -157,8 +156,8 @@ class Dashboard extends React.Component {
                                             <Button
                                                 color="success"
                                                 disabled={this.state.waiting}
-                                                onClick={!this.state.waiting && this.saveImage}>
-                                                    Save
+                                                onClick={() => !this.state.waiting ? this.saveImage() : null}>
+                                                    Upload
                                             </Button>
                                         </div>
                                         <div className="modal-user-info custom-scrollbar">

@@ -40,6 +40,11 @@ const resumeDefault = ({
                     <NavItem>
                         <NavLink className="nav-link js-scroll-trigger" href="#interests">Interests</NavLink>
                     </NavItem>
+                    {userData.portfolio.length ?
+                        <NavItem>
+                            <NavLink className="nav-link js-scroll-trigger" href="#portfolio">Portfolio</NavLink>
+                        </NavItem> : null
+                    }
                 </Nav>
             </Collapse>
         </Navbar>
@@ -142,7 +147,22 @@ const resumeDefault = ({
                     </ul>
                 </div>
             </section>
-
+            {userData.portfolio.length ?
+                <section className="section p-3 p-lg-5 d-flex flex-column" id="portfolio">
+                    <h2 className="mb-5">Portfolio</h2>
+                    {
+                        userData.portfolio.map((item, i) => (
+                            <div key={i} className="resume-item d-flex flex-column flex-md-row mb-5">
+                                <div className="resume-content mr-auto">
+                                    <h3 className="mb-0"><a href={item.url} target="_blank" rel="noreferrer noopener" style={{ color : themeColors.primary }}>{item.title}</a></h3>
+                                    <div className="subheading mb-3">{item.description}</div>
+                                    <p>{item.description}</p>
+                                </div>
+                            </div>
+                        ))
+                    }
+                </section> : null
+            }
             {/* <section className="resume-section p-3 p-lg-5 d-flex flex-column" id="awards">
                 <div className="my-auto">
                     <h2 className="mb-5">Awards &amp; Certifications</h2>
@@ -150,35 +170,6 @@ const resumeDefault = ({
                         <li>
                             <i className="fa-li fa fa-trophy text-warning" />
                                  Google Analytics Certified Developer
-                        </li>
-                        <li>
-                            <i className="fa-li fa fa-trophy text-warning"></i>
-                            Mobile Web Specialist - Google Certification
-                        </li>
-                        <li>
-                            <i className="fa-li fa fa-trophy text-warning"></i>
-                            1<sup>st</sup>
-                            Place - University of Colorado Boulder - Emerging Tech Competition 2009
-                        </li>
-                        <li>
-                            <i className="fa-li fa fa-trophy text-warning"></i>
-                            1<sup>st</sup>
-                            Place - University of Colorado Boulder - Adobe Creative Jam 2008 (UI Design Category)
-                        </li>
-                        <li>
-                            <i className="fa-li fa fa-trophy text-warning" />
-                            2<sup>nd</sup>
-                            Place - University of Colorado Boulder - Emerging Tech Competition 2008
-                        </li>
-                        <li>
-                            <i className="fa-li fa fa-trophy text-warning"></i>
-                            1<sup>st</sup>
-                            Place - James Buchanan High School - Hackathon 2006
-                        </li>
-                        <li>
-                            <i className="fa-li fa fa-trophy text-warning" />
-                            3<sup>rd</sup>
-                            Place - James Buchanan High School - Hackathon 2005
                         </li>
                     </ul>
                 </div>
