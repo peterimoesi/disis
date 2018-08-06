@@ -1,24 +1,5 @@
 .dashboard-cont {
   padding-right: 180px; }
-  .dashboard-cont .sidebar {
-    width: 180px;
-    height: 100vh;
-    position: fixed;
-    right: 0;
-    background: #4a4a4a;
-    z-index: 1;
-    top: 0;
-    padding-top: 100px; }
-    @media screen and (max-width: 768px) {
-      .dashboard-cont .sidebar {
-        background: rgba(74, 74, 74, 0.71); } }
-  .dashboard-cont .sidebar-item {
-    color: #f9f9f9;
-    text-align: right;
-    padding: 15px 15px 15px 0;
-    font-size: 12px; }
-    .dashboard-cont .sidebar-item:hover {
-      background: #3a3a3a; }
 
 .modal-container {
   position: fixed;
@@ -120,3 +101,24 @@
   font-weight: 500;
   margin-right: 10px;
   flex-wrap: wrap; }
+
+.sidebar {
+  width: 180px;
+  height: 100vh;
+  position: fixed;
+  right: 0;
+  background: #4a4a4a;
+  z-index: 1;
+  top: 0;
+  padding-top: 100px; }
+  @media screen and (max-width: 768px) {
+    .sidebar {
+      background: rgba(74, 74, 74, 0.71); } }
+
+.sidebar-item {
+  color: #f9f9f9;
+  text-align: right;
+  padding: 15px 15px 15px 0;
+  font-size: 12px; }
+  .sidebar-item:hover {
+    background: #3a3a3a; }

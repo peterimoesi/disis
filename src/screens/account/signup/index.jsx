@@ -7,15 +7,18 @@ import AccountComponent from '../component';
 import validateEmail from '../../../utils/validateEmail';
 
 class Signup extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             email : '',
             password : '',
             firstName : '',
             lastName : '',
             confirmPassword : '',
-            waiting : false
+            waiting : false,
+            ...(this.props.location.state && this.props.location.state.fromDemo ? {
+                ...props.previewData
+            } : {})
         };
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -25,6 +28,11 @@ class Signup extends React.Component {
         if (this.props.isAuthenticated) {
             this.props.history.push('/app/dashboard');
         }
+        // if (this.props.location.state && this.props.location.state.demo) {
+        //     this.setState({  
+                
+        //     })
+        // }
     }
 
     onChange(e) {
@@ -46,12 +54,12 @@ class Signup extends React.Component {
             this.setState({ error : 'Your names are required' });
             return;
         }
-        if (!validateEmail(this.state.email)) {
+        if (!validateEmail(email)) {
             this.setState({ error : 'Please enter a valid email' });
             return;
         }
         this.setState({ waiting : true });
-        this.props.userRegister({email, password, firstName, lastName})
+        this.props.userRegister(this.state)
             .then((e) => {
                 if (e === 500) {
                     this.setState({ error : 'Invalid Authentication', waiting : false });
@@ -66,6 +74,7 @@ class Signup extends React.Component {
     }
 
     render() {
+        console.log(this.state);
         return (
             <AccountComponent
                 onChange={this.onChange}
@@ -87,12 +96,14 @@ Signup.propTypes = {
     userRegister : PropTypes.func.isRequired,
     location : PropTypes.object.isRequired,
     history : PropTypes.object.isRequired,
-    isAuthenticated : PropTypes.bool.isRequired
+    isAuthenticated : PropTypes.bool.isRequired,
+    previewData : PropTypes.object.isRequired
 };
 
-function mapStateToProps({ userAuthentication }) {
+function mapStateToProps({ userAuthentication, previewData }) {
     return {
-        isAuthenticated : userAuthentication.isAuthenticated
+        isAuthenticated : userAuthentication.isAuthenticated,
+        previewData : previewData.data
     };
 }
 

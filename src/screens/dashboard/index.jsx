@@ -4,7 +4,7 @@ import { Button } from 'mdbreact';
 import PropTypes from 'prop-types';
 
 import Sidebar from './components/sidebar';
-import ThemeSelect from './components/themeSelect';
+import ThemeSelect from '../../components/themeSelect';
 import ChangeUrl from './components/changeUrl';
 import Themes from '../themes/container';
 import Userform from '../../components/userPageForm';

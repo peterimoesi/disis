@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-import defaultTheme from '../../../public/imgs/themes/default.png';
-import orbitTheme from '../../../public/imgs/themes/orbit.png';
+import defaultTheme from '../../public/imgs/themes/default.png';
+import orbitTheme from '../../public/imgs/themes/orbit.png';
 
 const themeSelect = ({ handleThemeSelect  }) => (
     <div className="modal-user-info custom-scrollbar">

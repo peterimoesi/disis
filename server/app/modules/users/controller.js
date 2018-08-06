@@ -26,12 +26,12 @@ function returnUser (user, image) {
 }
 
 export const userRegister = async (req, res) => {
-    const { email, password, firstName, lastName } = req.body;
+    const { password } = req.body;
     if (password.length < 6) {
         return res.status(400).json({ error: true, errorMessage: 'Password should be more than 6' });
     }
     try {
-        const user = await User.create({ email, password, firstName, lastName, image : '' });
+        const user = await User.create(req.body);
         console.log(user);
         return res.status(200).json({
             success : true,

@@ -24,6 +24,13 @@ export default (state = cloneDeep(initialData), action) => {
         return {
             data : action.data
         };
+    case 'UPDATE_PREVIEW':
+        return {
+            data : {
+                ...state.data,
+                ...action.data
+            }
+        };
     case 'CLEAR_PREVIEW':
         return {
             data : initialData

@@ -1,0 +1,14 @@
+.demo-dashboard {
+    padding-right: 180px;
+}
+
+.make-it-yours {
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, -500%);
+    transition: 400ms;
+    top : 10px;
+    &.make-it-yours-show {
+        transform: translate(-50%, 0%);
+    }
+}
